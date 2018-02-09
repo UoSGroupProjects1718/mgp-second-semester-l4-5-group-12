@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * GameManger Script
+ * GameManager Script
  * 
  * This is the GameManager script, it is used to control the current state of the game.
  * Ideally this also controls the players, but does not local variables for the players,
@@ -18,7 +18,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager Instance;
+    public static GameManager GMInstance;
 
     // Most of the variables set below are just placeholders,
     // they are there to lay foundation of the script to later build upon.
@@ -31,14 +31,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Runtime Settings")]
     [Tooltip("This is the force that will be applied to the projectile, depending in which direction it will be facing.")]
-    [SerializeField] private float windStrenght;
+    [SerializeField] private float windStrength;
 
 
-    private void Awake()
+    void Awake()
     {
-        if (Instance == this)
-            Instance = this;
-        else if (Instance != this)
+        if (GMInstance == null)
+            GMInstance = this;
+        else if (GMInstance != this)
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
@@ -51,6 +51,6 @@ public class GameManager : MonoBehaviour
 	
 	void Update ()
     {
-		
+        
 	}
 }
