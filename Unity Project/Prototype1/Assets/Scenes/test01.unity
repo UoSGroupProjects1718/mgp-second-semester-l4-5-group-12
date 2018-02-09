@@ -373,7 +373,7 @@ MonoBehaviour:
   playerTwoPosition: {fileID: 1172860944}
   intermissionPosition: {fileID: 0}
   cameraEndPosition: {x: 10, y: 10, z: 0}
-  cameraEndSize: 15
+  cameraEndSize: 8
 --- !u!4 &1465100388
 Transform:
   m_ObjectHideFlags: 0

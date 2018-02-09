@@ -34,17 +34,26 @@ public class CameraManager : MonoBehaviour {
     public float cameraZoomLength;
 
     // ANY DEBUG VARIABLES BELOW; HIDE WHEN DONE.. pls.
-    [Header("Debug Stuff")]
-    public Transform playerOnePosition;
-    public Transform playerTwoPosition;
+    [Header("Debug Stuff?")]
     public Transform intermissionPosition;
     public Vector3 cameraEndPosition;
     public float cameraEndSize;
 
+    [Header("Player1 Camera Settings")]
+    public Transform playerOnePosition;
+    public float playerOneCameraSize;
+    public float playerOneCameraFOV;
+
+    [Header("Player2 Camera Settings")]
+    public Transform playerTwoPosition;
+    public float playerTwoCameraSize;
+    public float playerTwoCameraFOV;
+
     private Vector3 startPosition;
     private float cameraStartSize;
     private float timeStartedLerping;
-    private bool isLerping;
+    private bool cameraMoving;
+    private bool cameraResize;
 
     void Awake()
     {
@@ -61,12 +70,14 @@ public class CameraManager : MonoBehaviour {
         startPosition = cameraObject.gameObject.transform.position;
         cameraStartSize = cameraObject.orthographicSize;
 
-        StartLerping();
+        //StartLerping();
 	}
 
     private void StartLerping()
     {
-        isLerping = true;
+        cameraMoving = true;
+        cameraResize = true;
+
         timeStartedLerping = Time.time;
 
         //startPosition = cameraObject.transform.position;
@@ -81,7 +92,7 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (isLerping)
+        if (cameraMoving)
         {
             float timeSinceStarted = Time.time - timeStartedLerping;
             float percentageComplete = timeSinceStarted / cameraPanLength;
@@ -89,7 +100,18 @@ public class CameraManager : MonoBehaviour {
             cameraObject.transform.position = Vector3.Lerp(startPosition, cameraEndPosition, percentageComplete);
 
             if (percentageComplete >= 1.0f)
-                isLerping = false;
+                cameraMoving = false;
+        }
+
+        if (cameraResize)
+        {
+            float timeSinceStarted = Time.time - timeStartedLerping;
+            float percentageComplete = timeSinceStarted / cameraZoomLength;
+
+            cameraObject.orthographicSize = Mathf.SmoothStep(cameraStartSize, cameraEndSize, percentageComplete);
+
+            if (percentageComplete >= 1.0f)
+                cameraResize = false;
         }
     }
 
