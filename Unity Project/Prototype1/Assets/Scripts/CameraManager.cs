@@ -18,13 +18,6 @@ public class CameraManager : MonoBehaviour {
 
     public static CameraManager CMInstance;
 
-    public enum RoundState
-    {
-        PlayerOne,
-        PlayerTwo,
-        Intermission
-    }
-
     [Header("Camera Settings")]
     [Tooltip("Reference to the camera used in the scene, this will be the camera that will move when players change turns.")]
     public Camera cameraObject;
@@ -35,27 +28,19 @@ public class CameraManager : MonoBehaviour {
 
     // ANY DEBUG VARIABLES BELOW; HIDE WHEN DONE.. pls.
     [Header("Debug Stuff?")]
-    public Transform intermissionPosition;
-    public Vector3 cameraEndPosition;
-    public float cameraEndSize;
-
-    [Header("Player1 Camera Settings")]
-    public Transform playerOnePosition;
-    public float playerOneCameraSize;
-    public float playerOneCameraFOV;
-
-    [Header("Player2 Camera Settings")]
-    public Transform playerTwoPosition;
-    public float playerTwoCameraSize;
-    public float playerTwoCameraFOV;
+    [SerializeField] private Vector3 intermissionPosition;
+    [SerializeField] private Vector3 desiredPosition;
+    [SerializeField] private float desiredSize;
 
     private Vector3 startPosition;
     private float cameraStartSize;
+
     private float timeStartedLerping;
+
     private bool cameraMoving;
     private bool cameraResize;
 
-    void Awake()
+    private void Awake()
     {
         if (CMInstance == null)
             CMInstance = this;
@@ -65,29 +50,45 @@ public class CameraManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start ()
+    private void Start()
     {
-        startPosition = cameraObject.gameObject.transform.position;
-        cameraStartSize = cameraObject.orthographicSize;
-
-        //StartLerping();
-	}
-
-    private void StartLerping()
-    {
-        cameraMoving = true;
-        cameraResize = true;
-
-        timeStartedLerping = Time.time;
-
-        //startPosition = cameraObject.transform.position;
+        
     }
 
     private void Update ()
     {
         // Wait for player input to start lerp.
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SetNewCameraPosition(new Vector3(-25, 0, -10));
+            SetNewCameraSize(10.0f);
             StartLerping();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SetNewCameraPosition(new Vector3(0, 0, -10));
+            SetNewCameraSize(15.0f);
+            StartLerping();
+        }
+
+        if (Input.GetKeyDown(KeyCode.D)) {
+            SetNewCameraPosition(new Vector3(25, 0, -10));
+            SetNewCameraSize(10.0f);
+            StartLerping();
+        }
+    }
+
+#region CAMERA MOVEMENT
+    private void StartLerping()
+    {
+        startPosition = cameraObject.gameObject.transform.position;
+        cameraStartSize = cameraObject.orthographicSize;
+
+        cameraMoving = true;
+        cameraResize = true;
+
+        timeStartedLerping = Time.time;
     }
 
     private void FixedUpdate()
@@ -97,7 +98,7 @@ public class CameraManager : MonoBehaviour {
             float timeSinceStarted = Time.time - timeStartedLerping;
             float percentageComplete = timeSinceStarted / cameraPanLength;
 
-            cameraObject.transform.position = Vector3.Lerp(startPosition, cameraEndPosition, percentageComplete);
+            cameraObject.transform.position = Vector3.Lerp(startPosition, desiredPosition, percentageComplete);
 
             if (percentageComplete >= 1.0f)
                 cameraMoving = false;
@@ -108,7 +109,7 @@ public class CameraManager : MonoBehaviour {
             float timeSinceStarted = Time.time - timeStartedLerping;
             float percentageComplete = timeSinceStarted / cameraZoomLength;
 
-            cameraObject.orthographicSize = Mathf.SmoothStep(cameraStartSize, cameraEndSize, percentageComplete);
+            cameraObject.orthographicSize = Mathf.SmoothStep(cameraStartSize, desiredSize, percentageComplete);
 
             if (percentageComplete >= 1.0f)
                 cameraResize = false;
@@ -117,11 +118,12 @@ public class CameraManager : MonoBehaviour {
 
     public void SetNewCameraPosition(Vector3 newPosition)
     {
-
+        desiredPosition = newPosition;
     }
 
     public void SetNewCameraSize(float newSize)
     {
-
+        desiredSize = newSize;
     }
 }
+#endregion

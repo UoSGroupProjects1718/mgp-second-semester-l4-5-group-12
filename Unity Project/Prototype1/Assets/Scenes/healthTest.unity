@@ -153,7 +153,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.20588237, g: 0.20588237, b: 0.20588237, a: 0}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -164,7 +164,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -369,9 +369,11 @@ MonoBehaviour:
   cameraObject: {fileID: 545360467}
   cameraPanLength: 3
   cameraZoomLength: 3
-  intermissionPosition: {x: 0, y: 0, z: -10}
-  desiredPosition: {x: -25, y: 0, z: -10}
-  desiredSize: 10
+  playerOnePosition: {fileID: 1239929236}
+  playerTwoPosition: {fileID: 1172860944}
+  intermissionPosition: {fileID: 0}
+  cameraEndPosition: {x: 10, y: 10, z: 0}
+  cameraEndSize: 8
 --- !u!4 &1465100388
 Transform:
   m_ObjectHideFlags: 0
