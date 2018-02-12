@@ -10,7 +10,19 @@ using UnityEngine;
  * to the center of the screen between the turns.
  * 
  * Anything related to the camera should be handled by this script, to makes sure that
- * we keep the project clean and neat; also avoiding any duplicated code.
+ * we keep the project clean and neat; also avoiding any duplicated code. The code also
+ * contains things like the max/min FOV, min/max camera size, and the positions.
+ * 
+ * The script uses two custom function to set the desiredPosition and desiredSize,
+ * this allows them to be set from outside of the script; they can be called from
+ * any other script, this allows the script to be more dynamic and used for more than just turns.
+ * 
+ * ---  ---
+ * HOW TO:
+ * 
+ * In order to currently move a camera, you need to call the function in this order (otherwise it might not work):
+ * SetCameraPosition, to set the camera's new position; SetCameraSize, to set the new camera size; StartLerping, to move camera.
+ * I will work on making this process simplier, but for now this is the way the functions need to be called.
  * 
  */
 
@@ -25,15 +37,27 @@ public class CameraManager : MonoBehaviour {
     public float cameraPanLength;
     [Tooltip("This is how long (in seconds) it will take the camera to scale from size A to size B.")]
     public float cameraZoomLength;
+    [Tooltip("This is the minimum ortographic size for the camera, you can't go below this value.")]
+    public float minOrthoSize;
+    [Tooltip("This is the maximum ortographic size for the camera, you can't go above this value.")]
+    public float maxOrthoSize;
 
     // ANY DEBUG VARIABLES BELOW; HIDE WHEN DONE.. pls.
-    [Header("Debug Stuff?")]
+    [Header("Debug Stuff | Most of this will be removed.")]
     [SerializeField] private Vector3 intermissionPosition;
+    [SerializeField] private Vector3 playerOnePosition;
+    [SerializeField] private Vector3 playerTwoPosition;
+    [SerializeField] private float intermissionSize;
+    [SerializeField] private float playerOneSize;
+    [SerializeField] private float playerTwoSize;
+    [Space]
     [SerializeField] private Vector3 desiredPosition;
     [SerializeField] private float desiredSize;
 
     private Vector3 startPosition;
+    private Vector3 currentPosition;
     private float cameraStartSize;
+    private float currentSize;
 
     private float timeStartedLerping;
 
@@ -52,34 +76,39 @@ public class CameraManager : MonoBehaviour {
 
     private void Start()
     {
-        
+        SetNewCameraPosition(intermissionPosition);
+        SetNewCameraSize(intermissionSize);
+        StartLerping();
     }
 
     private void Update ()
     {
-        // Wait for player input to start lerp.
+        // This is an example of using the camera script, pressing the buttons you can move the camera.
+        // This is teh same way you should call the functions whenever you are trying to move the camera.
+        // You don't need to set both position and size, but it is advised to in current setup.
+
         if (Input.GetKeyDown(KeyCode.A))
         {
-            SetNewCameraPosition(new Vector3(-25, 0, -10));
-            SetNewCameraSize(10.0f);
+            SetNewCameraPosition(playerOnePosition);
+            SetNewCameraSize(playerOneSize);
             StartLerping();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SetNewCameraPosition(new Vector3(0, 0, -10));
-            SetNewCameraSize(15.0f);
+            SetNewCameraPosition(intermissionPosition);
+            SetNewCameraSize(intermissionSize);
             StartLerping();
         }
 
         if (Input.GetKeyDown(KeyCode.D)) {
-            SetNewCameraPosition(new Vector3(25, 0, -10));
-            SetNewCameraSize(10.0f);
+            SetNewCameraPosition(playerTwoPosition);
+            SetNewCameraSize(playerTwoSize);
             StartLerping();
         }
     }
 
-#region CAMERA MOVEMENT
+    #region CAMERA MOVEMENT
     private void StartLerping()
     {
         startPosition = cameraObject.gameObject.transform.position;
@@ -93,6 +122,9 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        currentPosition = cameraObject.transform.position;
+        currentSize = cameraObject.orthographicSize;
+
         if (cameraMoving)
         {
             float timeSinceStarted = Time.time - timeStartedLerping;
@@ -118,12 +150,16 @@ public class CameraManager : MonoBehaviour {
 
     public void SetNewCameraPosition(Vector3 newPosition)
     {
+        // Later add a check here, to make sure that the camera never goes out of bounds.
         desiredPosition = newPosition;
     }
 
     public void SetNewCameraSize(float newSize)
     {
-        desiredSize = newSize;
+        if ((newSize < maxOrthoSize) && (newSize > minOrthoSize))
+            desiredSize = newSize;
+        else
+            Debug.Log("New camera ortographic size is out of scope, double check the values : " + gameObject.name);
     }
 }
 #endregion
