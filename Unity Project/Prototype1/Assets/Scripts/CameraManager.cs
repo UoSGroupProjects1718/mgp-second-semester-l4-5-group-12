@@ -109,7 +109,7 @@ public class CameraManager : MonoBehaviour {
     }
 
     #region CAMERA MOVEMENT
-    private void StartLerping()
+    public void StartLerping()
     {
         startPosition = cameraObject.gameObject.transform.position;
         cameraStartSize = cameraObject.orthographicSize;

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager GMInstance;
 
+    public enum RoundState { MENU, PLAYERONE, PLAYERTWO, INTERMISSION }
+
     // Most of the variables set below are just placeholders,
     // they are there to lay foundation of the script to later build upon.
     // Some of them will be removed, and more might be added.
@@ -29,12 +31,20 @@ public class GameManager : MonoBehaviour
     public GameObject playerOnePrefab;
     public GameObject playerTwoPrefab;
 
+    [Header("Camera Settings")]
+    public Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
+    public Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
+    public Vector3 intermissionPos = new Vector3(0, 0, -10);
+
+    [Header("Turn Settings")]
+    public RoundState currentRoundState = RoundState.INTERMISSION;
+
     [Header("Runtime Settings")]
     [Tooltip("This is the force that will be applied to the projectile, depending in which direction it will be facing.")]
     [SerializeField] private float windStrength;
 
 
-    void Awake()
+    void Awake ()
     {
         if (GMInstance == null)
             GMInstance = this;
@@ -48,9 +58,9 @@ public class GameManager : MonoBehaviour
     {
 		
 	}
-	
-	void Update ()
+
+    void Update()
     {
-        
-	}
+
+    }
 }
