@@ -35,14 +35,16 @@ public class GameManager : MonoBehaviour
     public Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
     public Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
     public Vector3 intermissionPos = new Vector3(0, 0, -10);
+    public float playerOneCameraSize = 10;
+    public float playerTwoCameraSize = 10;
+    public float intermissionCameraSize = 15;
 
     [Header("Turn Settings")]
     public RoundState currentRoundState = RoundState.INTERMISSION;
+    public float turnDelay;
 
-    [Header("Runtime Settings")]
-    [Tooltip("This is the force that will be applied to the projectile, depending in which direction it will be facing.")]
-    [SerializeField] private float windStrength;
-
+    private float currentTurnDelay;
+    private bool intermission;
 
     void Awake ()
     {
@@ -56,11 +58,65 @@ public class GameManager : MonoBehaviour
 
     void Start ()
     {
-		
+        ChangeTurn();
 	}
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            ChangeTurn();
+        }
+    }
 
+    void ChangeTurn() 
+    {
+        StartCoroutine(ChangeTurnIE());
+    }
+
+    IEnumerator ChangeTurnIE()
+    {
+
+        if (currentRoundState == RoundState.PLAYERONE)
+        {
+            // Move to player 2.
+            CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+            currentRoundState = RoundState.INTERMISSION;
+
+            yield return new WaitForSeconds(5f);
+
+            CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCameraSize);
+            currentRoundState = RoundState.PLAYERTWO;
+
+            StopCoroutine(ChangeTurnIE());
+        } 
+        else if (currentRoundState == RoundState.PLAYERTWO)
+        {
+            // Move to player 1.
+            CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+            currentRoundState = RoundState.INTERMISSION;
+
+            yield return new WaitForSeconds(5f);
+
+            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+            currentRoundState = RoundState.PLAYERONE;
+
+            StopCoroutine(ChangeTurnIE());
+        }
+        else if (currentRoundState == RoundState.INTERMISSION)
+        {
+            // Move to player 1
+            currentRoundState = RoundState.INTERMISSION;
+            CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+
+            yield return new WaitForSeconds(5f);
+
+            currentRoundState = RoundState.PLAYERONE;
+            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+
+            StopCoroutine(ChangeTurnIE());
+        }
+
+        StopCoroutine(ChangeTurnIE());
     }
 }

@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -175,6 +176,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -407,4 +409,11 @@ MonoBehaviour:
   mapCamera: {fileID: 545360467}
   playerOnePrefab: {fileID: 0}
   playerTwoPrefab: {fileID: 0}
-  windStrength: 0
+  playerOneCameraPos: {x: -25, y: 0, z: -10}
+  playerTwoCameraPos: {x: 25, y: 0, z: -10}
+  intermissionPos: {x: 0, y: 0, z: -10}
+  playerOneCameraSize: 10
+  playerTwoCameraSize: 10
+  intermissionCameraSize: 15
+  currentRoundState: 3
+  turnDelay: 0
