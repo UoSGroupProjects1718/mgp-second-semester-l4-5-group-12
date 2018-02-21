@@ -76,9 +76,9 @@ public class CameraManager : MonoBehaviour {
 
     private void Start()
     {
-        SetNewCameraPosition(intermissionPosition);
-        SetNewCameraSize(intermissionSize);
-        StartLerping();
+        //SetNewCameraPosition(intermissionPosition);
+        //SetNewCameraSize(intermissionSize);
+        //StartLerping();
     }
 
     private void Update ()
@@ -87,32 +87,35 @@ public class CameraManager : MonoBehaviour {
         // This is teh same way you should call the functions whenever you are trying to move the camera.
         // You don't need to set both position and size, but it is advised to in current setup.
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            SetNewCameraPosition(playerOnePosition);
-            SetNewCameraSize(playerOneSize);
-            StartLerping();
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    SetNewCameraPosition(playerOnePosition);
+        //    SetNewCameraSize(playerOneSize);
+        //    StartLerping();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SetNewCameraPosition(intermissionPosition);
-            SetNewCameraSize(intermissionSize);
-            StartLerping();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SetNewCameraPosition(intermissionPosition);
+        //    SetNewCameraSize(intermissionSize);
+        //    StartLerping();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.D)) {
-            SetNewCameraPosition(playerTwoPosition);
-            SetNewCameraSize(playerTwoSize);
-            StartLerping();
-        }
+        //if (Input.GetKeyDown(KeyCode.D)) {
+        //    SetNewCameraPosition(playerTwoPosition);
+        //    SetNewCameraSize(playerTwoSize);
+        //    StartLerping();
+        //}
     }
 
     #region CAMERA MOVEMENT
-    public void StartLerping()
+    public void MoveCamera(Vector3 _newPosition, float _newSize)
     {
         startPosition = cameraObject.gameObject.transform.position;
         cameraStartSize = cameraObject.orthographicSize;
+
+        SetNewCameraPosition(_newPosition);
+        SetNewCameraSize(_newSize);
 
         cameraMoving = true;
         cameraResize = true;
