@@ -47,10 +47,11 @@ public class GameManager : MonoBehaviour
     private float currentTurnDelay;
     private bool intermission;
 
-    [Header("Dan2's Countdown Settings")]
-    public int DefaultCountdownTime = 30;
-    public int RemainingTime = 30;
+    [Header("DanS's Countdown Settings")]
+    public float DefaultCountdownTime = 15f;
+    public float RemainingTime = 15f;
     public Text TimeLeft;
+    public bool IsCountingDown = true;
 
     void Awake ()
     {
@@ -73,9 +74,27 @@ public class GameManager : MonoBehaviour
         {
             ChangeTurn();
             RemainingTime = DefaultCountdownTime; 
-            CountDown(); 
+            //CountDown(); <- Part of the coroutine thing
 
         }
+
+       // while (IsCountingDown == true)
+       // {
+            RemainingTime -= Time.deltaTime;
+            TimeLeft.text = RemainingTime.ToString("00");
+            Debug.Log(TimeLeft.text); //Prints the remaining time to the console as a string
+            if (RemainingTime <= 0) //Checks if the time has run out
+            {
+                ChangeTurn(); //Changes to the next intermission
+            }
+       // }
+
+       // while (IsCountingDown == false)
+       // {
+       //     RemainingTime = DefaultCountdownTime;
+       //     TimeLeft.text = " ";
+       // }
+
     }
 
     void ChangeTurn() 
@@ -129,21 +148,27 @@ public class GameManager : MonoBehaviour
         StopCoroutine(ChangeTurnIE());
     }
 
-    void CountDown()
-    {
-        StartCoroutine(CountDownIE());
-    }
 
-    IEnumerator CountDownIE() 
-    {
-        yield return new WaitForSeconds(1);
-        RemainingTime -= 1;
-        Debug.Log(RemainingTime.ToString());
-        TimeLeft.GetComponent<UnityEngine.UI.TimeLeft>().text = timeLeft.ToString();
-        if (RemainingTime <= 0)
-        {
-            ChangeTurn();
-        }
+   //[Header("Dan2's Countdown Settings")]     - Only here so I don't need to keep scrolling up and down.
+   //public int DefaultCountdownTime = 15;       Delete when done.
+   //public int RemainingTime = 15;
+   //public Text TimeLeft;
+
+   // void CountDown()
+   // { 
+   //     StartCoroutine(CountDownIE());     
+   // }
+
+   //IEnumerator CountDownIE() 
+   //{
+     //   yield return new WaitForSeconds(1); //Waits one second
+      //  RemainingTime -= 1; //Decrements the remaining time
+        //TimeLeft.text = RemainingTime.ToString(); //Converts the remaining time to a string
+       // Debug.Log(TimeLeft.text); //Prints the remaining time to the console as a string
+        //if (RemainingTime <= 0) //Checks if the time has run out
+        //{
+       //     ChangeTurn(); //Changes to the next intermission
+       // }
         //CountDown and CountDownIE are incomplete and so not functional at the moment.
-    }
+    //}
 }
