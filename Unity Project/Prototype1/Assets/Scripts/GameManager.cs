@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * GameManager Script
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
     private float currentTurnDelay;
     private bool intermission;
 
+    [Header("Dan2's Countdown Settings")]
+    public int DefaultCountdownTime = 30;
+    public int RemainingTime = 30;
+    public Text TimeLeft;
+
     void Awake ()
     {
         if (GMInstance == null)
@@ -66,6 +72,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             ChangeTurn();
+            RemainingTime = DefaultCountdownTime; 
+            CountDown(); 
+
         }
     }
 
@@ -118,5 +127,23 @@ public class GameManager : MonoBehaviour
         }
 
         StopCoroutine(ChangeTurnIE());
+    }
+
+    void CountDown()
+    {
+        StartCoroutine(CountDownIE());
+    }
+
+    IEnumerator CountDownIE() 
+    {
+        yield return new WaitForSeconds(1);
+        RemainingTime -= 1;
+        Debug.Log(RemainingTime.ToString());
+        TimeLeft.GetComponent<UnityEngine.UI.TimeLeft>().text = timeLeft.ToString();
+        if (RemainingTime <= 0)
+        {
+            ChangeTurn();
+        }
+        //CountDown and CountDownIE are incomplete and so not functional at the moment.
     }
 }

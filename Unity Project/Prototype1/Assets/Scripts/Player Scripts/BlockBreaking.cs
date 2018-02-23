@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class BlockBreaking : MonoBehaviour {
 
-    [SerializeField] private string TagName;  
+    [SerializeField] private string TagName;
     //Editable 'tag' attached to the block.
-    [SerializeField] private float BreakChance;
-    //Used to determine if the block is broken or not in a collision.
+    private float PercentageChance = 0.25f;
+    //This is the variable that determines if the block is broken or not in a collision.
+    private float BreakChance;
+    //Compared with PercentageChance after being randomly generated with every collision.
+    
 
-    void OnCollisionEnter2D(Collision2D collider) {     
+    void OnCollisionEnter2D(Collision2D collider)
+    {     
         //When the projectile hits a block,
         if (collider.gameObject.tag == TagName)
         //If the projectile has the same tag as the block's 'tag',
@@ -17,7 +21,7 @@ public class BlockBreaking : MonoBehaviour {
             BreakChance = Random.Range(0f, 1f);
             Debug.Log(BreakChance.ToString());
             //A random number between 0 and 1 is generated.
-            if (BreakChance <= 0.25)
+            if (BreakChance <= PercentageChance)
             //If this number is less than or equal to 0.25,
             {
                 Destroy(this.gameObject);
