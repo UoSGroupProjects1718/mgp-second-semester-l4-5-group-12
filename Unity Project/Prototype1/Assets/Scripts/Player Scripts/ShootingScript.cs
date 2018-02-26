@@ -14,8 +14,10 @@
  * in the even of the camera being off-center we can receive some weird effects on the shooting mechanic.
  * Later in the development I will implement a function that will always focus on the object that we use to shoot with, this will help the player in aiming and make things easier.
  * 
+ * At the moment the further away from the object the player aims the bigger will be the force applied to the rigidbody,
+ * this probably needs to be fixed but at the moment I don't know how to fix it so I will probably need to ask Chris about it.
+ * 
  * TODO:
- *  - Clamp the distance of how far the player can aim.
  *  - Choose how much force should be applied to the projectile.
  *  - Have some aiming assitance (show where the player is aiming).
  *  - Make the player lock in the aim before shooting.
@@ -27,11 +29,14 @@
 
 public class ShootingScript : MonoBehaviour
 {
+    [Header("Shooting settings.")]
     [Tooltip("This is the prefab of the projectile that player will shoot.")]
     [SerializeField] private GameObject projectilePrefab;
-    [Tooltip("This is how much we multiply the force by, to get our force at which the projectile will move.")]
+    [Tooltip("This is the value that is used to multiply the projectile's force by (Higher number = Higher Force).")]
     [SerializeField] private float shootForceMultiplier;
-
+    [Tooltip("This limits how far the player can aim (Further Aim = More Force Applied). Rather than increasing this, increase the force multiplier; this way we are always applying the same force to the projectile. At the moment it is advised to leave this as 1.")]
+    [SerializeField] private float maxShootDist;
+    [Space]
     public bool shoot;  // Only for debug, later will remove.
 
     private Vector3 aimPos;
@@ -40,9 +45,10 @@ public class ShootingScript : MonoBehaviour
     private void Update() {
         if (Input.GetMouseButtonUp(0)) 
         {
-            aimPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("MousePos: " + aimPos.x + " " + aimPos.y + " .");
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = 0.0f;
 
+            aimPos = Camera.main.ScreenToWorldPoint(mousePosition);
 
             SpawnProjectile();
         }
@@ -55,7 +61,11 @@ public class ShootingScript : MonoBehaviour
             GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Rigidbody2D newProjectileRB = newProjectile.GetComponent<Rigidbody2D>();
 
-            newProjectileRB.AddForce((aimPos - transform.position) * Vector3.Distance(transform.position, aimPos) * shootForceMultiplier);
+            Vector3 shootPos = aimPos - transform.position;
+            Vector3 clampedPos = Vector3.ClampMagnitude(shootPos, maxShootDist);
+            clampedPos.z = 0;
+
+            newProjectileRB.AddForce(clampedPos * Vector3.Distance(clampedPos, transform.position) * shootForceMultiplier);
         }
     }
 }
