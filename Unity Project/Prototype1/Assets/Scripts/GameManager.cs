@@ -14,6 +14,12 @@ using UnityEngine.UI;
  * most likely it will have its own functions and such; ideally have it work with a player manager,
  * so this way we can keep this script neater. For now, most things will be done here for the prototypes.
  * 
+ * TODO:
+ *  - Improve the turn change system, try to avoid using IEnumerator? (ask Chris about this)
+ *      At the moment we don't need a turn timer, it will only become annoying when we test the game.
+ *      
+ *  - Between the turns there should be "perk" drop (imagine WORMS game)
+ *  
 */
 
 public class GameManager : MonoBehaviour
@@ -52,8 +58,9 @@ public class GameManager : MonoBehaviour
     public float RemainingTime = 15f;
     public Text TimeLeft;
     public bool IsCountingDown = true;
+    public bool doCountdown = false;
 
-    void Awake ()
+    void Awake () 
     {
         if (GMInstance == null)
             GMInstance = this;
@@ -63,7 +70,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start ()
+    void Start () 
     {
         ChangeTurn();
 	}
@@ -78,23 +85,29 @@ public class GameManager : MonoBehaviour
 
         }
 
-       // while (IsCountingDown == true)
-       // {
+        // while (IsCountingDown == true)
+        // {
+        if (doCountdown) 
+        {
             RemainingTime -= Time.deltaTime;
-            TimeLeft.text = RemainingTime.ToString("00");
-            Debug.Log(TimeLeft.text); //Prints the remaining time to the console as a string
+
+            if (TimeLeft != null) {
+                TimeLeft.text = RemainingTime.ToString("00");
+                Debug.Log(TimeLeft.text); //Prints the remaining time to the console as a string
+            }
+
             if (RemainingTime <= 0) //Checks if the time has run out
             {
                 ChangeTurn(); //Changes to the next intermission
             }
-       // }
+        }
+        // }
 
-       // while (IsCountingDown == false)
-       // {
-       //     RemainingTime = DefaultCountdownTime;
-       //     TimeLeft.text = " ";
-       // }
-
+        // while (IsCountingDown == false)
+        // {
+        //     RemainingTime = DefaultCountdownTime;
+        //     TimeLeft.text = " ";
+        // }
     }
 
     void ChangeTurn() 

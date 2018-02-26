@@ -203,7 +203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1172860944}
   - component: {fileID: 1172860943}
-  - component: {fileID: 1172860945}
   m_Layer: 0
   m_Name: playerGreen
   m_TagString: Untagged
@@ -262,27 +261,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1172860942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1239929236}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1172860945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1172860942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5667edecd8b8ef4e9f06a86b1156386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
-    type: 2}
-  shootForceMultiplier: 10
-  shoot: 1
 --- !u!1 &1239929234
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +336,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1172860944}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -379,7 +364,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465100386}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58cb289df2fba854e8af513f25df3f3b, type: 3}
   m_Name: 
@@ -432,8 +417,3 @@ MonoBehaviour:
   intermissionCameraSize: 15
   currentRoundState: 3
   turnDelay: 0
-  DefaultCountdownTime: 15
-  RemainingTime: 15
-  TimeLeft: {fileID: 0}
-  IsCountingDown: 0
-  doCountdown: 0

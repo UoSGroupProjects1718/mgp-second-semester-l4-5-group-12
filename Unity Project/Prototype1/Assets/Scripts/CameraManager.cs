@@ -24,6 +24,10 @@ using UnityEngine;
  * SetCameraPosition, to set the camera's new position; SetCameraSize, to set the new camera size; StartLerping, to move camera.
  * I will work on making this process simplier, but for now this is the way the functions need to be called.
  * 
+ * TODO:
+ *  - Add the ability to move the camera around when we are in play mode.
+ *  - The player should also be able to zoom the camera in and out (clamp the values)
+ *  
  */
 
 public class CameraManager : MonoBehaviour {
