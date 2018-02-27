@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
     type: 2}
-  shootForceMultiplier: 100
+  shootForceMultiplier: 1000
   maxShootDist: 1
   shoot: 1
 --- !u!1 &1239929234

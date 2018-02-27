@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class normalProjectile : baseProjectile {
+public class testProjectile : baseProjectile {
 
-    void Start() { }
+    //void Start() { }
 }

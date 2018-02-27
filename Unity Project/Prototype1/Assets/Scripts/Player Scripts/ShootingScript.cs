@@ -46,9 +46,9 @@ public class ShootingScript : MonoBehaviour
         if (Input.GetMouseButtonUp(0)) 
         {
             Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 0.0f;
 
             aimPos = Camera.main.ScreenToWorldPoint(mousePosition);
+            aimPos.z = 0.0f;
 
             SpawnProjectile();
         }
@@ -62,10 +62,12 @@ public class ShootingScript : MonoBehaviour
             Rigidbody2D newProjectileRB = newProjectile.GetComponent<Rigidbody2D>();
 
             Vector3 shootPos = aimPos - transform.position;
-            Vector3 clampedPos = Vector3.ClampMagnitude(shootPos, maxShootDist);
-            clampedPos.z = 0;
+            //Vector3 clampedPos = Vector3.ClampMagnitude(shootPos, maxShootDist);
+            //clampedPos.z = 0;
 
-            newProjectileRB.AddForce(clampedPos * Vector3.Distance(clampedPos, transform.position) * shootForceMultiplier);
+
+
+            newProjectileRB.AddForce(shootPos.normalized * shootForceMultiplier);
         }
     }
 }
