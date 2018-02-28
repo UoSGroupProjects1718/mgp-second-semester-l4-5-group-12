@@ -38,9 +38,9 @@ public class CameraManager : MonoBehaviour {
     public float maxOrthoSize;
 
     private Vector3 startPosition;
-    private Vector3 currentPosition;
     private float cameraStartSize;
-    private float currentSize;
+    //private Vector3 currentPosition;
+    //private float currentSize;
 
     private Vector3 desiredPosition;
     private float desiredSize;
@@ -92,8 +92,8 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        currentPosition = cameraObject.transform.position;
-        currentSize = cameraObject.orthographicSize;
+        //currentPosition = cameraObject.transform.position;
+        //currentSize = cameraObject.orthographicSize;
 
         if (cameraMoving)
         {

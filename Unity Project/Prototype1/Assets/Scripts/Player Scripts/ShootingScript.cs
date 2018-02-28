@@ -71,11 +71,15 @@ public class ShootingScript : MonoBehaviour
 
     private void SpawnProjectile() 
     {
-        GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject newProjectile = Instantiate(projectilePrefab, new Vector3(transform.position.x + 2, transform.position.y, transform.position.z), Quaternion.identity);
         Rigidbody2D newProjectileRB = newProjectile.GetComponent<Rigidbody2D>();
+        baseProjectile newProjectileStats = newProjectile.GetComponent<baseProjectile>();
 
         Vector3 shootPos = aimPos - transform.position;
 
-        newProjectileRB.AddForce(shootPos.normalized * shootForceMultiplier);
+        newProjectileStats.playerOwner = playerNumber;
+        newProjectileRB.AddForce(shootPos.normalized * shootForceMultiplier * 1000);
+
+        GameManager.GMInstance.ChangeTurn();
     }
 }

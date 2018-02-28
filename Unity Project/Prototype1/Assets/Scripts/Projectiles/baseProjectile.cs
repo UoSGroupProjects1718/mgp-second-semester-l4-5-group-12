@@ -25,9 +25,21 @@ public class baseProjectile : MonoBehaviour {
     [SerializeField] private float projectileDamage;
 
 
-    void Update()
+    [HideInInspector] public int playerOwner;
+
+    private void Update()
     {
         if (this.transform.position.y <= -10)
             Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player" && playerOwner != other.gameObject.GetComponent<PlayerController>().playerNumber)
+        {
+            PlayerController _playerController = other.gameObject.GetComponent<PlayerController>();
+
+            _playerController.currentHealth -= projectileDamage;
+        }
     }
 }

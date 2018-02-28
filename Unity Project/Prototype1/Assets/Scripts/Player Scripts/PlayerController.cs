@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
+    [Header("Player Settings")]
+    [Tooltip("This is the player index (player number). Setting this to 1 will make this object Player 1, setting this to 2 will make this Player 2, etc. Make sure you don't have multiple players with the same number.")]
     public int playerNumber = 0;
+
+    [Header("Temporary Stuff")]
+    [Tooltip("This is the health the player has at the beginning of the round; this will most likely be changed later when we develop the game further.")]
+    public float currentHealth;
+    public Text healthText;
+
+    private float playerHealth;
 
 	void Start ()
     {
@@ -16,11 +26,13 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.LogError("You have not assigned the player number at: " + gameObject.name);
         }
+
+        currentHealth = playerHealth;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+        healthText.text = currentHealth.ToString("00");
 	}
 }
