@@ -29,15 +29,6 @@ public class GameManager : MonoBehaviour
 
     public enum RoundState { MENU, PLAYERONE, PLAYERTWO, INTERMISSION }
 
-    // Most of the variables set below are just placeholders,
-    // they are there to lay foundation of the script to later build upon.
-    // Some of them will be removed, and more might be added.
-
-    [Header("Scene Settings")]
-    public Camera mapCamera;
-    public GameObject playerOnePrefab;
-    public GameObject playerTwoPrefab;
-
     [Header("Camera Settings")]
     public Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
     public Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
@@ -50,15 +41,18 @@ public class GameManager : MonoBehaviour
     public RoundState currentRoundState = RoundState.INTERMISSION;
     public float turnDelay;
 
-    private float currentTurnDelay;
-    private bool intermission;
+    [Header("Debug Stuff")]
+    [SerializeField] private int playerTurn;
 
-    [Header("DanS's Countdown Settings")]
-    public float DefaultCountdownTime = 15f;
-    public float RemainingTime = 15f;
-    public Text TimeLeft;
-    public bool IsCountingDown = true;
-    public bool doCountdown = false;
+    private Camera mapCamera;
+    private GameObject playerOne;
+    private GameObject playerTwo;
+
+
+    private GameObject[] players;
+    private float currentTurnDelay;
+
+    private bool countDown;
 
     void Awake () 
     {
@@ -72,94 +66,131 @@ public class GameManager : MonoBehaviour
 
     void Start () 
     {
-        ChangeTurn();
+        AssignPlayers();
+
+        if (!mapCamera)
+        {
+            mapCamera = Camera.main;
+        }
+        else
+        {
+            Debug.Log("Camera already referenced? HOW?");
+        }
+
+
+        //ChangeTurn();
+        //currentTurnDelay = turnDelay;
 	}
+
+    private void AssignPlayers()
+    {
+        // We find all the players in the scene, because we do this at the start it does not impact our performance.
+        // But if we have done this often enough, we would see a performance drop.
+        players = GameObject.FindGameObjectsWithTag("Player");
+
+        // If there is no players found, throw an error.
+        if (players.Length == 0)
+        {
+            Debug.LogError("NO PLAYERS FOUND.");
+            return;
+        }
+
+        // Run a foreach loop and assign the players to the fields.
+        foreach (GameObject _go in players)
+        {
+            int _playerNumber = _go.GetComponent<PlayerController>().playerNumber;
+
+            if (_playerNumber == 0)
+            {
+                // The player number is not assigned (or left as default)
+                Debug.LogError("No number assigned to player: " + _go.name);
+            }
+            else if (_playerNumber == 1)
+            {
+                // Before we assign player one, we make sure we haven't assigned anything here yet.
+                if (!playerOne)
+                    playerOne = _go;
+                else
+                    Debug.LogError("PLAYER 1 HAS ALREADY BEEN ASSIGNED.");
+            }
+            else if (_playerNumber == 2)
+            {
+                // Before we assign player one, we make sure we haven't assigned anything here yet.
+                if (!playerTwo)
+                    playerTwo = _go;
+                else
+                    Debug.LogError("PLAYER 2 HAS ALREADY BEEN ASSIGNED.");
+            }
+            else
+            {
+                // Technically this shouldn't show up, because in player controller we force it to be either 1 or 2.
+                Debug.LogError("Well... this shouldn't be appearing.");
+            }
+        }
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            ChangeTurn();
-            RemainingTime = DefaultCountdownTime; 
-            //CountDown(); <- Part of the coroutine thing
-
-        }
-
-        // while (IsCountingDown == true)
-        // {
-        if (doCountdown) 
-        {
-            RemainingTime -= Time.deltaTime;
-
-            if (TimeLeft != null) {
-                TimeLeft.text = RemainingTime.ToString("00");
-                Debug.Log(TimeLeft.text); //Prints the remaining time to the console as a string
-            }
-
-            if (RemainingTime <= 0) //Checks if the time has run out
-            {
-                ChangeTurn(); //Changes to the next intermission
-            }
-        }
-        // }
-
-        // while (IsCountingDown == false)
-        // {
-        //     RemainingTime = DefaultCountdownTime;
-        //     TimeLeft.text = " ";
-        // }
+        
     }
 
     void ChangeTurn() 
     {
-        StartCoroutine(ChangeTurnIE());
+        //StartCoroutine(ChangeTurnIE());
+
+
     }
 
-    IEnumerator ChangeTurnIE()
-    {
+    //IEnumerator ChangeTurnIE()
+    //{
+    //    if (currentRoundState == RoundState.PLAYERONE)
+    //    {
+    //        // Move to player 2.
+    //        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+    //        currentRoundState = RoundState.INTERMISSION;
 
-        if (currentRoundState == RoundState.PLAYERONE)
-        {
-            // Move to player 2.
-            CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
-            currentRoundState = RoundState.INTERMISSION;
+    //        yield return new WaitForSeconds(CameraManager.CMInstance.cameraPanLength);
+    //        StartRoundDelayTimer();
+    //        yield return new WaitForSeconds(turnDelay);
 
-            yield return new WaitForSeconds(5f);
+    //        CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCameraSize);
+    //        currentRoundState = RoundState.PLAYERTWO;
 
-            CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCameraSize);
-            currentRoundState = RoundState.PLAYERTWO;
+    //        StopCoroutine(ChangeTurnIE());
+    //    } 
+    //    else if (currentRoundState == RoundState.PLAYERTWO)
+    //    {
+    //        // Move to player 1.
+    //        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+    //        currentRoundState = RoundState.INTERMISSION;
 
-            StopCoroutine(ChangeTurnIE());
-        } 
-        else if (currentRoundState == RoundState.PLAYERTWO)
-        {
-            // Move to player 1.
-            CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
-            currentRoundState = RoundState.INTERMISSION;
+    //        yield return new WaitForSeconds(CameraManager.CMInstance.cameraPanLength);
+    //        StartRoundDelayTimer();
+    //        yield return new WaitForSeconds(turnDelay);
 
-            yield return new WaitForSeconds(5f);
+    //        CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+    //        currentRoundState = RoundState.PLAYERONE;
 
-            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
-            currentRoundState = RoundState.PLAYERONE;
+    //        StopCoroutine(ChangeTurnIE());
+    //    }
+    //    else if (currentRoundState == RoundState.INTERMISSION)
+    //    {
+    //        // Move to player 1
+    //        currentRoundState = RoundState.INTERMISSION;
+    //        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
 
-            StopCoroutine(ChangeTurnIE());
-        }
-        else if (currentRoundState == RoundState.INTERMISSION)
-        {
-            // Move to player 1
-            currentRoundState = RoundState.INTERMISSION;
-            CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+    //        yield return new WaitForSeconds(CameraManager.CMInstance.cameraPanLength);
+    //        StartRoundDelayTimer();
+    //        yield return new WaitForSeconds(turnDelay);
 
-            yield return new WaitForSeconds(5f);
+    //        currentRoundState = RoundState.PLAYERONE;
+    //        CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
 
-            currentRoundState = RoundState.PLAYERONE;
-            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+    //        StopCoroutine(ChangeTurnIE());
+    //    }
 
-            StopCoroutine(ChangeTurnIE());
-        }
-
-        StopCoroutine(ChangeTurnIE());
-    }
+    //    StopCoroutine(ChangeTurnIE());
+    //}
 
 
    //[Header("Dan2's Countdown Settings")]     - Only here so I don't need to keep scrolling up and down.

@@ -65,8 +65,8 @@ public class CameraManager : MonoBehaviour {
 
     private float timeStartedLerping;
 
-    private bool cameraMoving;
-    private bool cameraResize;
+    [HideInInspector] public bool cameraMoving;
+    [HideInInspector] public bool cameraResize;
 
     private void Awake()
     {

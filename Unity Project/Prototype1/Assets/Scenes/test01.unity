@@ -203,10 +203,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1172860944}
   - component: {fileID: 1172860943}
+  - component: {fileID: 1172860946}
   - component: {fileID: 1172860945}
   m_Layer: 0
   m_Name: playerGreen
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,8 +283,20 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
     type: 2}
   shootForceMultiplier: 1000
-  maxShootDist: 1
+  maxShootDist: 0
   shoot: 1
+--- !u!114 &1172860946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1172860942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b560295369e3ee74788710200634e00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 2
 --- !u!1 &1239929234
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,10 +306,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1239929236}
   - component: {fileID: 1239929235}
+  - component: {fileID: 1239929238}
   - component: {fileID: 1239929237}
   m_Layer: 0
   m_Name: playerBlue
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,6 +388,18 @@ MonoBehaviour:
   shootForceMultiplier: 3
   maxShootDist: 0
   shoot: 0
+--- !u!114 &1239929238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1239929234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b560295369e3ee74788710200634e00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 1
 --- !u!1 &1465100386
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +423,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465100386}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58cb289df2fba854e8af513f25df3f3b, type: 3}
   m_Name: 
@@ -415,6 +441,8 @@ MonoBehaviour:
   playerTwoSize: 10
   desiredPosition: {x: -25, y: 0, z: -10}
   desiredSize: 25
+  cameraMoving: 0
+  cameraResize: 0
 --- !u!4 &1465100388
 Transform:
   m_ObjectHideFlags: 0
@@ -439,9 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40014aae0972e6846876ad56981f0036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapCamera: {fileID: 545360467}
-  playerOnePrefab: {fileID: 0}
-  playerTwoPrefab: {fileID: 0}
   playerOneCameraPos: {x: -25, y: 0, z: -10}
   playerTwoCameraPos: {x: 25, y: 0, z: -10}
   intermissionPos: {x: 0, y: 0, z: -10}
@@ -450,8 +475,4 @@ MonoBehaviour:
   intermissionCameraSize: 15
   currentRoundState: 3
   turnDelay: 0
-  DefaultCountdownTime: 15
-  RemainingTime: 15
-  TimeLeft: {fileID: 0}
-  IsCountingDown: 0
-  doCountdown: 0
+  playerTurn: 0
