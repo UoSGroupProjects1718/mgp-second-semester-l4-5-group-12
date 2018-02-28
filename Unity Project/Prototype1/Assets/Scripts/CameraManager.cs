@@ -3,30 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * CameraManager Script
+ * CameraManager Script by Daniel Pokladek.
  * 
- * This is the CameraManager script, it is used to control the camera inside of the game.
- * This script handles the movement of the camera between player moves, and moving it
- * to the center of the screen between the turns.
+ * This is the CameraManager script, it is used to control and move the camera in the game; it can be used outside of the round too (for example in the menu).
+ * The script will handle the position of the camera, and the ortographic size of the camera; it's main task is to move between player turns and intermission.
+ * It can be used to do any type of movement of the camera, you just need to pass it variables; it does not support rotation because we don't need it.
  * 
- * Anything related to the camera should be handled by this script, to makes sure that
- * we keep the project clean and neat; also avoiding any duplicated code. The code also
- * contains things like the max/min FOV, min/max camera size, and the positions.
+ * When working on this script, make sure to have anything related to camera movement inside this script, this makes sure we keep the code nice and clean.
+ * Try to avoid making more camera scripts unless its completly necessary; let the managers know first before modyfing this core script.
  * 
- * The script uses two custom function to set the desiredPosition and desiredSize,
- * this allows them to be set from outside of the script; they can be called from
- * any other script, this allows the script to be more dynamic and used for more than just turns.
- * 
- * ---  ---
- * HOW TO:
- * 
- * In order to currently move a camera, you need to call the function in this order (otherwise it might not work):
- * SetCameraPosition, to set the camera's new position; SetCameraSize, to set the new camera size; StartLerping, to move camera.
- * I will work on making this process simplier, but for now this is the way the functions need to be called.
+ * In order to use this script, you need to call the MoveCamera(desiredPosition, desiredSize) function which has to be accessed through the CameraManager.
+ * CameraManager.CMInstance.MoveCamera(playerOne, playerOneSize) : this will move the camera to playerOne position, and change the size of camera to playerOneSize.
  * 
  * TODO:
- *  - Add the ability to move the camera around when we are in play mode.
- *  - The player should also be able to zoom the camera in and out (clamp the values)
+ *  - Give the player option to move the camera around by dragging finger around the screen.
+ *  - Give the player option to zoom in and out the camera (pinch the screen).
  *  
  */
 
@@ -46,25 +37,18 @@ public class CameraManager : MonoBehaviour {
     [Tooltip("This is the maximum ortographic size for the camera, you can't go above this value.")]
     public float maxOrthoSize;
 
-    // ANY DEBUG VARIABLES BELOW; HIDE WHEN DONE.. pls.
-    [Header("Debug Stuff | Most of this will be removed.")]
-    [SerializeField] private Vector3 intermissionPosition;
-    [SerializeField] private Vector3 playerOnePosition;
-    [SerializeField] private Vector3 playerTwoPosition;
-    [SerializeField] private float intermissionSize;
-    [SerializeField] private float playerOneSize;
-    [SerializeField] private float playerTwoSize;
-    [Space]
-    [SerializeField] private Vector3 desiredPosition;
-    [SerializeField] private float desiredSize;
-
     private Vector3 startPosition;
     private Vector3 currentPosition;
     private float cameraStartSize;
     private float currentSize;
 
+    private Vector3 desiredPosition;
+    private float desiredSize;
+
     private float timeStartedLerping;
 
+    // We hide them in inspector, so that we can stil access them from outside.
+    // And they don't need to be adjusted from editor.
     [HideInInspector] public bool cameraMoving;
     [HideInInspector] public bool cameraResize;
 
@@ -78,37 +62,16 @@ public class CameraManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        //SetNewCameraPosition(intermissionPosition);
-        //SetNewCameraSize(intermissionSize);
-        //StartLerping();
-    }
-
     private void Update ()
     {
         // This is an example of using the camera script, pressing the buttons you can move the camera.
-        // This is teh same way you should call the functions whenever you are trying to move the camera.
-        // You don't need to set both position and size, but it is advised to in current setup.
+        // After changing the script, you now only need to call one function to move the position and size of camera.
 
         //if (Input.GetKeyDown(KeyCode.A))
         //{
-        //    SetNewCameraPosition(playerOnePosition);
-        //    SetNewCameraSize(playerOneSize);
-        //    StartLerping();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    SetNewCameraPosition(intermissionPosition);
-        //    SetNewCameraSize(intermissionSize);
-        //    StartLerping();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.D)) {
-        //    SetNewCameraPosition(playerTwoPosition);
-        //    SetNewCameraSize(playerTwoSize);
-        //    StartLerping();
+        //    // To move the camera we call the MoveCamera function,
+        //    // this handles the position and size of the camera.
+        //    MoveCamera(playerPosition, playerSize);
         //}
     }
 

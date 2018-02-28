@@ -27,6 +27,7 @@
  *  
  */
 
+[RequireComponent(typeof(PlayerController))]
 public class ShootingScript : MonoBehaviour
 {
     [Header("Shooting settings.")]
@@ -36,38 +37,45 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] private float shootForceMultiplier;
     [Tooltip("This limits how far the player can aim (Further Aim = More Force Applied). Rather than increasing this, increase the force multiplier; this way we are always applying the same force to the projectile. At the moment it is advised to leave this as 1.")]
     [SerializeField] private float maxShootDist;
-    [Space]
-    public bool shoot;  // Only for debug, later will remove.
+
+    private bool canShoot;
 
     private Vector3 aimPos;
-    private float offSet;
+    private int playerNumber;
+    private int currentRound;
 
-    private void Update() {
-        if (Input.GetMouseButtonUp(0)) 
+    private void Start()
+    {
+        playerNumber = GetComponent<PlayerController>().playerNumber;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Input.mousePosition;
+            // We do this here, so we don't have to do it each frame.
+            currentRound = GameManager.GMInstance.playerTurn;
+            canShoot = GameManager.GMInstance.canShoot;
 
-            aimPos = Camera.main.ScreenToWorldPoint(mousePosition);
-            aimPos.z = 0.0f;
+            if (playerNumber == currentRound && canShoot)
+            {
+                Vector3 mousePosition = Input.mousePosition;
 
-            SpawnProjectile();
+                aimPos = Camera.main.ScreenToWorldPoint(mousePosition);
+                aimPos.z = 0.0f;
+
+                SpawnProjectile();
+            }
         }
     }
 
     private void SpawnProjectile() 
     {
-        if (shoot) 
-        {
-            GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Rigidbody2D newProjectileRB = newProjectile.GetComponent<Rigidbody2D>();
+        GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Rigidbody2D newProjectileRB = newProjectile.GetComponent<Rigidbody2D>();
 
-            Vector3 shootPos = aimPos - transform.position;
-            //Vector3 clampedPos = Vector3.ClampMagnitude(shootPos, maxShootDist);
-            //clampedPos.z = 0;
+        Vector3 shootPos = aimPos - transform.position;
 
-
-
-            newProjectileRB.AddForce(shootPos.normalized * shootForceMultiplier);
-        }
+        newProjectileRB.AddForce(shootPos.normalized * shootForceMultiplier);
     }
 }

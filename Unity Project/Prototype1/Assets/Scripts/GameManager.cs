@@ -27,34 +27,40 @@ public class GameManager : MonoBehaviour
 
     public static GameManager GMInstance;
 
-    public enum RoundState { MENU, PLAYERONE, PLAYERTWO, INTERMISSION }
+    public enum RoundState { MENU, INTERMISSION, PLAYING }
 
-    [Header("Camera Settings")]
-    public Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
-    public Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
-    public Vector3 intermissionPos = new Vector3(0, 0, -10);
-    public float playerOneCameraSize = 10;
-    public float playerTwoCameraSize = 10;
-    public float intermissionCameraSize = 15;
+    // Most below will be probably assigned in script some time soon.
+    [Header("Player's Positions")]
+    [SerializeField] private Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
+    [SerializeField] private Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
+    [SerializeField] private Vector3 intermissionPos = new Vector3(0, 0, -10);
+    [SerializeField] private float playerOneCameraSize = 10;
+    [SerializeField] private float playerTwoCameraSize = 10;
+    [SerializeField] private float intermissionCameraSize = 15;
 
+    // Don't think this needs to be public?
     [Header("Turn Settings")]
     public RoundState currentRoundState = RoundState.INTERMISSION;
-    public float turnDelay;
+    [SerializeField] private float turnDelay;
+    [SerializeField] private int turnCounter;
 
+    // Debug duh.
     [Header("Debug Stuff")]
-    [SerializeField] private int playerTurn;
+    public int playerTurn;
+    [SerializeField] private float currentTurnDelay;
+
+    [HideInInspector] public bool canShoot;
 
     private Camera mapCamera;
     private GameObject playerOne;
     private GameObject playerTwo;
 
-
     private GameObject[] players;
-    private float currentTurnDelay;
 
     private bool countDown;
+    private bool intermissionCounter;
 
-    void Awake () 
+    private void Awake () 
     {
         if (GMInstance == null)
             GMInstance = this;
@@ -64,7 +70,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start () 
+    private void Start () 
     {
         AssignPlayers();
 
@@ -77,9 +83,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Camera already referenced? HOW?");
         }
 
-
-        //ChangeTurn();
-        //currentTurnDelay = turnDelay;
+        ChangeTurn();
 	}
 
     private void AssignPlayers()
@@ -109,17 +113,29 @@ public class GameManager : MonoBehaviour
             {
                 // Before we assign player one, we make sure we haven't assigned anything here yet.
                 if (!playerOne)
+                {
                     playerOne = _go;
+                    playerOneCameraPos = _go.transform.position;
+                    playerOneCameraPos.z = -10;
+                }
                 else
+                {
                     Debug.LogError("PLAYER 1 HAS ALREADY BEEN ASSIGNED.");
+                }
             }
             else if (_playerNumber == 2)
             {
                 // Before we assign player one, we make sure we haven't assigned anything here yet.
-                if (!playerTwo)
+                if (!playerOne)
+                {
                     playerTwo = _go;
+                    playerTwoCameraPos = _go.transform.position;
+                    playerTwoCameraPos.z = -10;
+                }
                 else
+                {
                     Debug.LogError("PLAYER 2 HAS ALREADY BEEN ASSIGNED.");
+                }
             }
             else
             {
@@ -129,90 +145,83 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            ChangeTurn();
+        }
+
+        // Our timer for turn delay.
+        if (intermissionCounter)
+        {
+            // Once we hit zero, we change the turn.
+            if (currentTurnDelay <= 0)
+            {
+                intermissionCounter = false;
+                currentTurnDelay = 0;
+                currentRoundState = RoundState.PLAYING;
+                HandleTurnChange();
+            }
+
+            // Take deltaTime every frame.
+            currentTurnDelay -= Time.deltaTime;
+        }
     }
 
-    void ChangeTurn() 
+    public void ChangeTurn()
+    {
+        currentRoundState = RoundState.INTERMISSION;
+
+        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+
+        // Change turn countdown.
+        currentTurnDelay = turnDelay;
+        canShoot = false;
+        intermissionCounter = true;
+    }
+
+    private void HandleTurnChange() 
     {
         //StartCoroutine(ChangeTurnIE());
+        //Debug.Log("Changing turn.");
 
+        if (playerTurn == 0)
+        {
+            // Debug.Log("Changing to player 1");
+            // The game just began, do stuff and start the game.
 
+            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+
+            playerTurn += 1;
+            canShoot = true;
+        }
+        else if (playerTurn == 1)
+        {
+            // Debug.Log("Changing to player 2");
+            // It's player 1's turn -> Change to player 2.
+
+            CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCameraSize);
+
+            playerTurn += 1;
+            canShoot = true;
+        }
+        else if (playerTurn == 2)
+        {
+            // Debug.Log("Changing to player 1");
+            // It's player 2's turn -> Change to player 1.
+
+            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+
+            playerTurn += 1;
+            canShoot = true;
+        }
+
+        // If the turn number is higher than the player's we have, we go back to player 1.
+        if (playerTurn > players.Length) {
+            playerTurn = 1;
+        }
+
+        turnCounter += 1;
     }
-
-    //IEnumerator ChangeTurnIE()
-    //{
-    //    if (currentRoundState == RoundState.PLAYERONE)
-    //    {
-    //        // Move to player 2.
-    //        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
-    //        currentRoundState = RoundState.INTERMISSION;
-
-    //        yield return new WaitForSeconds(CameraManager.CMInstance.cameraPanLength);
-    //        StartRoundDelayTimer();
-    //        yield return new WaitForSeconds(turnDelay);
-
-    //        CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCameraSize);
-    //        currentRoundState = RoundState.PLAYERTWO;
-
-    //        StopCoroutine(ChangeTurnIE());
-    //    } 
-    //    else if (currentRoundState == RoundState.PLAYERTWO)
-    //    {
-    //        // Move to player 1.
-    //        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
-    //        currentRoundState = RoundState.INTERMISSION;
-
-    //        yield return new WaitForSeconds(CameraManager.CMInstance.cameraPanLength);
-    //        StartRoundDelayTimer();
-    //        yield return new WaitForSeconds(turnDelay);
-
-    //        CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
-    //        currentRoundState = RoundState.PLAYERONE;
-
-    //        StopCoroutine(ChangeTurnIE());
-    //    }
-    //    else if (currentRoundState == RoundState.INTERMISSION)
-    //    {
-    //        // Move to player 1
-    //        currentRoundState = RoundState.INTERMISSION;
-    //        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
-
-    //        yield return new WaitForSeconds(CameraManager.CMInstance.cameraPanLength);
-    //        StartRoundDelayTimer();
-    //        yield return new WaitForSeconds(turnDelay);
-
-    //        currentRoundState = RoundState.PLAYERONE;
-    //        CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
-
-    //        StopCoroutine(ChangeTurnIE());
-    //    }
-
-    //    StopCoroutine(ChangeTurnIE());
-    //}
-
-
-   //[Header("Dan2's Countdown Settings")]     - Only here so I don't need to keep scrolling up and down.
-   //public int DefaultCountdownTime = 15;       Delete when done.
-   //public int RemainingTime = 15;
-   //public Text TimeLeft;
-
-   // void CountDown()
-   // { 
-   //     StartCoroutine(CountDownIE());     
-   // }
-
-   //IEnumerator CountDownIE() 
-   //{
-     //   yield return new WaitForSeconds(1); //Waits one second
-      //  RemainingTime -= 1; //Decrements the remaining time
-        //TimeLeft.text = RemainingTime.ToString(); //Converts the remaining time to a string
-       // Debug.Log(TimeLeft.text); //Prints the remaining time to the console as a string
-        //if (RemainingTime <= 0) //Checks if the time has run out
-        //{
-       //     ChangeTurn(); //Changes to the next intermission
-       // }
-        //CountDown and CountDownIE are incomplete and so not functional at the moment.
-    //}
 }
