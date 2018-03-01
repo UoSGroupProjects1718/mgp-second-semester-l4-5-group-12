@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * PlayerController Script
+ * 
+ * This is the player controller script, this is where all player related stuff is handled.
+ * At the moment all the script does, is it has a variable to see if the player is P1 or P2.
+ * It keep track of player's max health and current health amount.
+ * 
+ */
+
 public class PlayerController : MonoBehaviour {
 
     [Header("Player Settings")]

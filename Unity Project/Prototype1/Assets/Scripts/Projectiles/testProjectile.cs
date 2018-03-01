@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class testProjectile : baseProjectile {
 
-    //void Start() { }
+    // Stuff will appear here one day.... I hope
 }
