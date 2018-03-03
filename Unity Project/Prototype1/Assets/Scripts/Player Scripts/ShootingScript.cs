@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /*
  * Shooting Script
@@ -33,16 +34,22 @@ public class ShootingScript : MonoBehaviour
     [Header("Shooting settings.")]
     [Tooltip("This is the prefab of the projectile that player will shoot.")]
     [SerializeField] private GameObject projectilePrefab;
+    [Tooltip("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt.")]
+    [SerializeField] private GameObject aimPrefab;
+    [Tooltip("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt.")]
+    [SerializeField] private GameObject trajectoryPrefab;
     [Tooltip("This is the value that is used to multiply the projectile's force by (Higher number = Higher Force).")]
     [SerializeField] private float shootForceMultiplier;
-    [Tooltip("This limits how far the player can aim (Further Aim = More Force Applied). Rather than increasing this, increase the force multiplier; this way we are always applying the same force to the projectile. At the moment it is advised to leave this as 1.")]
-    [SerializeField] private float maxShootDist;
 
-    private bool canShoot;
+    private GameObject crosshairInstance;
 
-    private Vector3 aimPos;
+    private Vector3 mousePosition;
+    private Vector3 screenPos;
+    private Vector3 worldPos;
     private int playerNumber;
     private int currentRound;
+    private bool canShoot;
+    private bool aimLocked;
 
     private void Start()
     {
@@ -59,26 +66,52 @@ public class ShootingScript : MonoBehaviour
 
             if (playerNumber == currentRound && canShoot)
             {
-                Vector3 mousePosition = Input.mousePosition;
+                mousePosition   = Input.mousePosition;
+                screenPos       = Camera.main.ScreenToWorldPoint(mousePosition);
+                screenPos.z     = 0.0f;
 
-                aimPos = Camera.main.ScreenToWorldPoint(mousePosition);
-                aimPos.z = 0.0f;
-
-                SpawnProjectile();
+                LockAim(screenPos);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && aimLocked
+            && playerNumber == currentRound && canShoot)
+        {
+            SpawnProjectile(screenPos);
         }
     }
 
-    private void SpawnProjectile() 
+    private void LockAim(Vector3 _aimPosition)
     {
-        GameObject newProjectile = Instantiate(projectilePrefab, new Vector3(transform.position.x + 2, transform.position.y, transform.position.z), Quaternion.identity);
+        worldPos = _aimPosition - transform.position;
+
+        if (!crosshairInstance)
+        {
+            crosshairInstance = Instantiate(aimPrefab, _aimPosition, Quaternion.identity);
+        }
+        else
+        {
+            Destroy(crosshairInstance);
+
+            crosshairInstance = Instantiate(aimPrefab, _aimPosition, Quaternion.identity);
+        }
+
+        aimLocked = true;
+    }
+
+    private void SpawnProjectile(Vector3 _shootPosition) 
+    {
+        GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Rigidbody2D newProjectileRB = newProjectile.GetComponent<Rigidbody2D>();
         baseProjectile newProjectileStats = newProjectile.GetComponent<baseProjectile>();
 
-        Vector3 shootPos = aimPos - transform.position;
+        //worldPos = _shootPosition - transform.position;
 
         newProjectileStats.playerOwner = playerNumber;
-        newProjectileRB.AddForce(shootPos.normalized * shootForceMultiplier * 1000);
+        newProjectileRB.AddForce(worldPos.normalized * shootForceMultiplier * 1000);
+
+        Destroy(crosshairInstance);
+        aimLocked = false;
 
         GameManager.GMInstance.ChangeTurn();
     }

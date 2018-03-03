@@ -717,6 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
     type: 2}
+  aimPrefab: {fileID: 1535579388965144, guid: fae6aa37728d3c64aac6b7316c571b2d, type: 2}
   shootForceMultiplier: 8
   maxShootDist: 1
 --- !u!114 &1172860946
@@ -730,10 +731,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b560295369e3ee74788710200634e00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1555775887}
-  playerHealth: 10
-  currentHealth: 0
   playerNumber: 2
+  playerHealth: 10
+  healthText: {fileID: 1555775887}
+  currentHealth: 0
 --- !u!61 &1172860947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -849,6 +850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
     type: 2}
+  aimPrefab: {fileID: 1535579388965144, guid: fae6aa37728d3c64aac6b7316c571b2d, type: 2}
   shootForceMultiplier: 8
   maxShootDist: 1
 --- !u!114 &1239929238
@@ -862,10 +864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b560295369e3ee74788710200634e00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 351175806}
-  playerHealth: 10
-  currentHealth: 0
   playerNumber: 1
+  playerHealth: 10
+  healthText: {fileID: 351175806}
+  currentHealth: 0
 --- !u!61 &1239929239
 BoxCollider2D:
   m_ObjectHideFlags: 0
