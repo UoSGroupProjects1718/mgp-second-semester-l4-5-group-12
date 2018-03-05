@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 
-    public void OnPlayButtonClick()
+    public void OnPlayButtonClick(string test01)
     {
-        SceneManager.LoadScene((int)Scenes.menuScreenTest);
+        SceneManager.LoadScene (test01);
     }
 
-    public enum Scenes
-    {
-        menuScreenTest,
-        test01
-    }
+    //public enum Scenes        //Probably delete this since it will be used in the level select.
+    //{
+    //    menuScreenTest,
+    //    test01
+    //}
 
     //public void OnQuitClick()         // Ignore this bit for now.
     //{
