@@ -44,5 +44,11 @@ public class PlayerController : MonoBehaviour {
             healthText.text = currentHealth.ToString("00");
         else
             healthText.text = currentHealth.ToString("0");
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Debug.Log("Player det: " + gameObject.name);
+        }
     }
 }
