@@ -37,7 +37,7 @@ public class ShootingScript : MonoBehaviour
     [Tooltip("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt.")]
     [SerializeField] private GameObject aimPrefab;
     [Tooltip("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt.")]
-    [SerializeField] private GameObject trajectoryPrefab;
+    [SerializeField] private GameObject dummyProjectilePrefab;
     [Tooltip("This is the value that is used to multiply the projectile's force by (Higher number = Higher Force).")]
     [SerializeField] private float shootForceMultiplier;
 
@@ -50,6 +50,7 @@ public class ShootingScript : MonoBehaviour
     private int currentRound;
     private bool canShoot;
     private bool aimLocked;
+
 
     private void Start()
     {

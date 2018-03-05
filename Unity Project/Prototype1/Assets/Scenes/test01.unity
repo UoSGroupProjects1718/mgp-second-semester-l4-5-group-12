@@ -718,8 +718,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
     type: 2}
   aimPrefab: {fileID: 1535579388965144, guid: fae6aa37728d3c64aac6b7316c571b2d, type: 2}
+  dummyProjectilePrefab: {fileID: 0}
   shootForceMultiplier: 8
-  maxShootDist: 1
 --- !u!114 &1172860946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,8 +851,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1512072500603160, guid: f5b441afd5049f64dbd3973c31b22c1f,
     type: 2}
   aimPrefab: {fileID: 1535579388965144, guid: fae6aa37728d3c64aac6b7316c571b2d, type: 2}
+  dummyProjectilePrefab: {fileID: 1512072500603160, guid: 69cd039ea1b7bec43a6b7eca94430603,
+    type: 2}
   shootForceMultiplier: 8
-  maxShootDist: 1
 --- !u!114 &1239929238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,7 +1034,7 @@ MonoBehaviour:
   playerTwoCameraSize: 10
   intermissionCameraSize: 15
   currentRoundState: 3
-  turnDelay: 10
+  turnDelay: 1
   turnCounter: 0
   playerTurn: 0
   currentTurnDelay: 0

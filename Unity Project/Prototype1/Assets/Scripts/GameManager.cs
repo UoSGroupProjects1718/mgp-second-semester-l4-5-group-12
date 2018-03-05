@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +13,9 @@ using UnityEngine.UI;
  * most likely it will have its own functions and such; ideally have it work with a player manager,
  * so this way we can keep this script neater. For now, most things will be done here for the prototypes.
  * 
- * TODO:
- *  - Improve the turn change system, try to avoid using IEnumerator? (ask Chris about this)
- *      At the moment we don't need a turn timer, it will only become annoying when we test the game.
- *      
+ * At the moment we don't need a turn timer, it will only become annoying when we test the game.
+ * 
+ * TODO:     
  *  - Between the turns there should be "perk" drop (imagine WORMS game)
  *  
 */
@@ -50,6 +48,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float currentTurnDelay;
 
     [HideInInspector] public bool canShoot;
+    [HideInInspector] public bool cameraMoving;
 
     private Camera mapCamera;
     private GameObject playerOne;
@@ -86,7 +85,7 @@ public class GameManager : MonoBehaviour
         ChangeTurn();
 	}
 
-    private void AssignPlayers()
+    private void AssignPlayers ()
     {
         // We find all the players in the scene, because we do this at the start it does not impact our performance.
         // But if we have done this often enough, we would see a performance drop.
@@ -145,7 +144,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update ()
     {
         // Our timer for turn delay.
         if (intermissionCounter)
@@ -164,11 +163,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeTurn()
+    public void ChangeTurn ()
     {
         currentRoundState = RoundState.INTERMISSION;
 
         CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+
+        
 
         // Change turn countdown.
         currentTurnDelay = turnDelay;
@@ -176,7 +177,7 @@ public class GameManager : MonoBehaviour
         intermissionCounter = true;
     }
 
-    private void HandleTurnChange() 
+    private void HandleTurnChange () 
     {
         //StartCoroutine(ChangeTurnIE());
         //Debug.Log("Changing turn.");
@@ -218,5 +219,16 @@ public class GameManager : MonoBehaviour
         }
 
         turnCounter += 1;
+    }
+
+    IEnumerator DropPerkCoroutine()
+    {
+        yield return new WaitForSeconds(3.0f);
+        // .. do stuff here
+    }
+
+    public Coroutine DropPerk()
+    {
+        return StartCoroutine(DropPerkCoroutine());
     }
 }

@@ -64,15 +64,8 @@ public class CameraManager : MonoBehaviour {
 
     private void Update ()
     {
-        // This is an example of using the camera script, pressing the buttons you can move the camera.
-        // After changing the script, you now only need to call one function to move the position and size of camera.
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    // To move the camera we call the MoveCamera function,
-        //    // this handles the position and size of the camera.
-        //    MoveCamera(playerPosition, playerSize);
-        //}
+        if (!cameraMoving && !cameraResize)
+            GameManager.GMInstance.cameraMoving = false;
     }
 
     #region CAMERA MOVEMENT
@@ -86,6 +79,7 @@ public class CameraManager : MonoBehaviour {
 
         cameraMoving = true;
         cameraResize = true;
+        GameManager.GMInstance.cameraMoving = true;
 
         timeStartedLerping = Time.time;
     }
@@ -103,7 +97,9 @@ public class CameraManager : MonoBehaviour {
             cameraObject.transform.position = Vector3.Lerp(startPosition, desiredPosition, percentageComplete);
 
             if (percentageComplete >= 1.0f)
+            {
                 cameraMoving = false;
+            }
         }
 
         if (cameraResize)
@@ -114,7 +110,9 @@ public class CameraManager : MonoBehaviour {
             cameraObject.orthographicSize = Mathf.SmoothStep(cameraStartSize, desiredSize, percentageComplete);
 
             if (percentageComplete >= 1.0f)
+            {
                 cameraResize = false;
+            }
         }
     }
 
