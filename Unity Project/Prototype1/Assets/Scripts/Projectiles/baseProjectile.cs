@@ -45,6 +45,15 @@ public class baseProjectile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
+        {
+            baseBlock otherBB = other.gameObject.GetComponent<baseBlock>();
+
+            otherBB.blockHealth -= 1;
+
+            Destroy(gameObject);
+        }
+
         if (other.gameObject.tag == "Player") 
         {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());

@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 50373542603322048}
   - component: {fileID: 60503998559753872}
   - component: {fileID: 114813319263842016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WoodTriangle
-  m_TagString: Untagged
+  m_TagString: WoodBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

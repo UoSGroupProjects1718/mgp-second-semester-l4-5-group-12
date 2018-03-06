@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 50275591756483992}
   - component: {fileID: 60895504350292906}
   - component: {fileID: 114106311843764740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WoodPlank
-  m_TagString: Untagged
+  m_TagString: WoodBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

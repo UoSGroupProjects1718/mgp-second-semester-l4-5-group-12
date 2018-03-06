@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 58960495407140500}
   - component: {fileID: 50105225043020150}
   - component: {fileID: 114918002558648264}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WoodCircle
-  m_TagString: Untagged
+  m_TagString: WoodBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
