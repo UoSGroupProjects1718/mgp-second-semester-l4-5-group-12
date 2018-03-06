@@ -119,8 +119,8 @@ public class GameManager : MonoBehaviour
                 if (!playerOne)
                 {
                     playerOne = _go;
-                    playerOneCameraPos = _go.transform.position;
-                    playerOneCameraPos.z = -10;
+                    //playerOneCameraPos = _go.transform.position;
+                    //playerOneCameraPos.z = -10;
                 }
                 else
                 {
@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviour
                 if (!playerOne)
                 {
                     playerTwo = _go;
-                    playerTwoCameraPos = _go.transform.position;
-                    playerTwoCameraPos.z = -10;
+                    //playerTwoCameraPos = _go.transform.position;
+                    //playerTwoCameraPos.z = -10;
                 }
                 else
                 {
