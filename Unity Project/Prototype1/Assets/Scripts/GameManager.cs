@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     // Don't think this needs to be public?
     [Header("Turn Settings")]
     public RoundState currentRoundState = RoundState.INTERMISSION;
+    [SerializeField] private Text turnText;
+    [SerializeField] private Text timerText;
     [SerializeField] private float turnDelay;
     [SerializeField] private int turnCounter;
 
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
     [Header("Debug Stuff")]
     public int playerTurn;
     [SerializeField] private float currentTurnDelay;
+
 
     [HideInInspector] public bool canShoot;
     [HideInInspector] public bool cameraMoving;
@@ -146,6 +149,12 @@ public class GameManager : MonoBehaviour
 
     private void Update ()
     {
+        if (!cameraMoving && turnText.isActiveAndEnabled)
+        {
+            timerText.enabled = false;
+            canShoot = true;
+        }
+
         // Our timer for turn delay.
         if (intermissionCounter)
         {
@@ -160,6 +169,7 @@ public class GameManager : MonoBehaviour
 
             // Take deltaTime every frame.
             currentTurnDelay -= Time.deltaTime;
+            timerText.text = currentTurnDelay.ToString("0");
         }
     }
 
@@ -169,18 +179,25 @@ public class GameManager : MonoBehaviour
 
         CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCamSize);
 
-        
+        turnText.text = "Intermision";   
 
         // Change turn countdown.
         currentTurnDelay = turnDelay;
         canShoot = false;
         intermissionCounter = true;
+        timerText.enabled = true;
+    }
+
+    private void UpdateUI() 
+    {
+
     }
 
     private void HandleTurnChange () 
     {
         //StartCoroutine(ChangeTurnIE());
         //Debug.Log("Changing turn.");
+        timerText.enabled = false;
 
         if (playerTurn == 0)
         {
@@ -190,7 +207,8 @@ public class GameManager : MonoBehaviour
             CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
-            canShoot = true;
+            //canShoot = true;
+            turnText.text = "Player 1 Turn.";
         }
         else if (playerTurn == 1)
         {
@@ -200,7 +218,8 @@ public class GameManager : MonoBehaviour
             CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCamSize);
 
             playerTurn += 1;
-            canShoot = true;
+            //canShoot = true;
+            turnText.text = "Player 2 Turn.";
         }
         else if (playerTurn == 2)
         {
@@ -210,7 +229,8 @@ public class GameManager : MonoBehaviour
             CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
-            canShoot = true;
+            //canShoot = true;
+            turnText.text = "Player 1 Turn.";
         }
 
         // If the turn number is higher than the player's we have, we go back to player 1.
