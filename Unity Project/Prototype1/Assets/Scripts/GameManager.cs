@@ -17,6 +17,8 @@ using UnityEngine.UI;
  * 
  * TODO:     
  *  - Between the turns there should be "perk" drop (imagine WORMS game)
+ *  - The camera moves to where the player's base is (zoomed out),
+ *      but once the player taps to start the turn the camera zooms in.
  *  
 */
 
@@ -152,6 +154,7 @@ public class GameManager : MonoBehaviour
         if (!cameraMoving && turnText.isActiveAndEnabled)
         {
             timerText.enabled = false;
+            turnText.enabled = false;
             canShoot = true;
         }
 
@@ -185,6 +188,7 @@ public class GameManager : MonoBehaviour
         currentTurnDelay = turnDelay;
         canShoot = false;
         intermissionCounter = true;
+        turnText.enabled = true;
         timerText.enabled = true;
     }
 
