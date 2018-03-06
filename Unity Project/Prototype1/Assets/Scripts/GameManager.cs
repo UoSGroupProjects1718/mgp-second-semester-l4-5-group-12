@@ -32,9 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
     [SerializeField] private Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
     [SerializeField] private Vector3 intermissionPos = new Vector3(0, 0, -10);
-    [SerializeField] private float playerOneCameraSize = 10;
-    [SerializeField] private float playerTwoCameraSize = 10;
-    [SerializeField] private float intermissionCameraSize = 15;
+    [SerializeField] private float playerOneCamSize = 10;
+    [SerializeField] private float playerTwoCamSize = 10;
+    [SerializeField] private float intermissionCamSize = 15;
 
     // Don't think this needs to be public?
     [Header("Turn Settings")]
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
     {
         currentRoundState = RoundState.INTERMISSION;
 
-        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCameraSize);
+        CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCamSize);
 
         
 
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
             // Debug.Log("Changing to player 1");
             // The game just began, do stuff and start the game.
 
-            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
             canShoot = true;
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
             // Debug.Log("Changing to player 2");
             // It's player 1's turn -> Change to player 2.
 
-            CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCameraSize);
+            CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCamSize);
 
             playerTurn += 1;
             canShoot = true;
@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
             // Debug.Log("Changing to player 1");
             // It's player 2's turn -> Change to player 1.
 
-            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCameraSize);
+            CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
             canShoot = true;

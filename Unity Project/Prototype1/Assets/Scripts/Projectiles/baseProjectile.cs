@@ -42,4 +42,22 @@ public class baseProjectile : MonoBehaviour {
             _playerController.currentHealth -= projectileDamage;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if (other.gameObject.tag == "Player") 
+        {
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+
+        if (other.gameObject.tag == "Block") 
+        {
+            baseBlock otherBlock = other.gameObject.GetComponent<baseBlock>();
+
+            if (otherBlock.playerOwner == playerOwner) 
+            {
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            }
+        }
+    }
 }

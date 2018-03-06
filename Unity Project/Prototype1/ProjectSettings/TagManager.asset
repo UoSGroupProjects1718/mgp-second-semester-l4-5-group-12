@@ -6,6 +6,7 @@ TagManager:
   tags:
   - projectile
   - WoodBlock
+  - Cannon
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Cannon
+  - Projectile
   - 
   - 
   - 

@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4143535004137138}
   - component: {fileID: 212304200198551154}
   - component: {fileID: 50275591756483992}
-  - component: {fileID: 60082536210281890}
+  - component: {fileID: 60895504350292906}
+  - component: {fileID: 114106311843764740}
   m_Layer: 0
-  m_Name: PlankObjectHorizontal
+  m_Name: WoodPlank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573394563821990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -27.389763, y: 0.29568744, z: 0}
   m_LocalScale: {x: 1, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &60082536210281890
+--- !u!60 &60895504350292906
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -91,6 +92,19 @@ PolygonCollider2D:
       - {x: 0.19999999, y: -2.46}
       - {x: 0.19999999, y: 2.3899999}
       - {x: 0.16, y: 2.4099998}
+--- !u!114 &114106311843764740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573394563821990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983ba98f7b178b54ea4f016de72f9570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockHealth: 3
+  playerOwner: 0
 --- !u!212 &212304200198551154
 SpriteRenderer:
   m_ObjectHideFlags: 1

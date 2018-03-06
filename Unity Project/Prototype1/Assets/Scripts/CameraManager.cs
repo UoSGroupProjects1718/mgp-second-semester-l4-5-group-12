@@ -86,9 +86,6 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //currentPosition = cameraObject.transform.position;
-        //currentSize = cameraObject.orthographicSize;
-
         if (cameraMoving)
         {
             float timeSinceStarted = Time.time - timeStartedLerping;

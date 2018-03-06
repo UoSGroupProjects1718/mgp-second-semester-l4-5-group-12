@@ -40,10 +40,13 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (currentHealth >= 10)
-            healthText.text = currentHealth.ToString("00");
-        else
-            healthText.text = currentHealth.ToString("0");
+        if (healthText)
+        {
+            if (currentHealth >= 10)
+                healthText.text = currentHealth.ToString("00");
+            else
+                healthText.text = currentHealth.ToString("0");
+        }
 
         if (currentHealth <= 0)
         {
