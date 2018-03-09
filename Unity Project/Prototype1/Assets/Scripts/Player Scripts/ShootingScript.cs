@@ -59,6 +59,12 @@ public class ShootingScript : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetMouseButtonDown(0) && aimLocked
+           && playerNumber == currentRound && canShoot)
+        {
+            SpawnProjectile(screenPos);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             // We do this here, so we don't have to do it each frame.
@@ -74,13 +80,10 @@ public class ShootingScript : MonoBehaviour
                 LockAim(screenPos);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && aimLocked
-            && playerNumber == currentRound && canShoot)
-        {
-            SpawnProjectile(screenPos);
-        }
     }
+
+    //GetMouseButtonDown(0)
+    //GetKeyDown(KeyCode.Space)
 
     private void LockAim(Vector3 _aimPosition)
     {

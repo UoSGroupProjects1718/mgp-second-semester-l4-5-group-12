@@ -38,22 +38,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float playerTwoCamSize = 10;
     [SerializeField] private float intermissionCamSize = 15;
 
-    // Don't think this needs to be public?
+     // Don't think this needs to be public?
     [Header("Turn Settings")]
     public RoundState currentRoundState = RoundState.INTERMISSION;
-    [SerializeField] private Text turnText;
-    [SerializeField] private Text timerText;
-    [SerializeField] private float turnDelay;
-    [SerializeField] private int turnCounter;
+    [SerializeField] private Text turnText; //Text showing the turn
+    [SerializeField] private Text timerText; //Text showing the remaining time in that turn
+    [SerializeField] private float turnDelay; //Time between each turn (interval time)
+    [SerializeField] private int turnCounter; //Keeps track of whose turn it is
 
     // Debug duh.
     [Header("Debug Stuff")]
-    public int playerTurn;
-    [SerializeField] private float currentTurnDelay;
+    public int playerTurn;  //Why is this a public variable?
+    [SerializeField] private float currentTurnDelay; //Counts down the interval time, is reset by setting as turnDelay
 
-
-    [HideInInspector] public bool canShoot;
-    [HideInInspector] public bool cameraMoving;
+    [HideInInspector] public bool canShoot; //Is shooting enabled?
+    [HideInInspector] public bool cameraMoving; //Is the camera moving?
 
     private Camera mapCamera;
     private GameObject playerOne;
@@ -61,8 +60,12 @@ public class GameManager : MonoBehaviour
 
     private GameObject[] players;
 
-    private bool countDown;
-    private bool intermissionCounter;
+    //private bool currentTimeLimit;
+    [Header("Countdown Stuff")]
+    public float currentTimeLimit;  //Time remaining in the current turn, is reset by setting as timeLimit 
+    [SerializeField] private float timeLimit; //Time for each turn
+    private bool isCountingDown = false; //Is the countdown currently running?
+    private bool intermissionCounter; 
 
     private void Awake () 
     {
@@ -159,7 +162,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Our timer for turn delay.
-        if (intermissionCounter)
+        if (intermissionCounter == true)
         {
             // Once we hit zero, we change the turn.
             if (currentTurnDelay <= 0)
@@ -173,6 +176,21 @@ public class GameManager : MonoBehaviour
             // Take deltaTime every frame.
             currentTurnDelay -= Time.deltaTime;
             timerText.text = currentTurnDelay.ToString("0");
+
+        if(isCountingDown == true) //if the timer is counting down
+        {
+            if (currentTimeLimit <= 0)
+            {
+                isCountingDown = false;
+                currentTimeLimit = timeLimit;
+                currentRoundState = RoundState.INTERMISSION;
+                HandleTurnChange();
+            }
+        }
+
+            currentTimeLimit -= Time.deltaTime;
+            timerText.text = currentTimeLimit.ToString("0");
+                   
         }
     }
 
@@ -184,12 +202,13 @@ public class GameManager : MonoBehaviour
 
         turnText.text = "Intermision";   
 
-        // Change turn countdown.
+        // Change turn currentTimeLimit.
         currentTurnDelay = turnDelay;
         canShoot = false;
         intermissionCounter = true;
         turnText.enabled = true;
         timerText.enabled = true;
+        currentTimeLimit = timeLimit;
     }
 
     private void UpdateUI() 
@@ -213,6 +232,7 @@ public class GameManager : MonoBehaviour
             playerTurn += 1;
             //canShoot = true;
             turnText.text = "Player 1 Turn.";
+            isCountingDown = true;
         }
         else if (playerTurn == 1)
         {
@@ -224,6 +244,7 @@ public class GameManager : MonoBehaviour
             playerTurn += 1;
             //canShoot = true;
             turnText.text = "Player 2 Turn.";
+            isCountingDown = true;
         }
         else if (playerTurn == 2)
         {
@@ -235,11 +256,13 @@ public class GameManager : MonoBehaviour
             playerTurn += 1;
             //canShoot = true;
             turnText.text = "Player 1 Turn.";
+            isCountingDown = true;
         }
 
         // If the turn number is higher than the player's we have, we go back to player 1.
         if (playerTurn > players.Length) {
             playerTurn = 1;
+            isCountingDown = true;
         }
 
         turnCounter += 1;

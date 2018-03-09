@@ -27,6 +27,8 @@ public class baseProjectile : MonoBehaviour {
 
     [HideInInspector] public int playerOwner;
 
+    float speed;
+    
     private void Update()
     {
         if (this.transform.position.y <= -10)
@@ -47,16 +49,22 @@ public class baseProjectile : MonoBehaviour {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
+
             baseBlock otherBB = other.gameObject.GetComponent<baseBlock>();
 
+            //GameObject RemainingTime = GameObject.Find("GameManager");
+            //GameManager TimeGetter = RemainingTime.GetComponent<GameManager>();
+
+            //otherBB.blockHealth -= TimeGetter.currentTimeLimit;
             otherBB.blockHealth -= 1;
 
-            Destroy(gameObject);
+            Destroy(gameObject);  
         }
 
         if (other.gameObject.tag == "Player") 
         {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Destroy(gameObject);
         }
 
         if (other.gameObject.tag == "Block") 
