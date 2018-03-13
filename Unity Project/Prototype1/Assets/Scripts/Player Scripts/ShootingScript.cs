@@ -59,7 +59,7 @@ public class ShootingScript : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) && aimLocked
+        if(Input.GetKeyDown(KeyCode.Space) && aimLocked
            && playerNumber == currentRound && canShoot)
         {
             SpawnProjectile(screenPos);

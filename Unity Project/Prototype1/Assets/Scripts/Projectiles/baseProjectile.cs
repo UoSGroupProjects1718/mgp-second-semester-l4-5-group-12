@@ -31,7 +31,7 @@ public class baseProjectile : MonoBehaviour {
     
     private void Update()
     {
-        if (this.transform.position.y <= -10)
+        if (this.transform.position.y <= -45)
             Destroy(this.gameObject);
     }
 
