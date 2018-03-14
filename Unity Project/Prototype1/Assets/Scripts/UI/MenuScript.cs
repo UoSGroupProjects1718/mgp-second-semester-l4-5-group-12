@@ -10,6 +10,7 @@ public class MenuScript : MonoBehaviour {
     public void PlayGame()
     {
         SceneManager.LoadScene(gameScene);
+		Debug.Log("Play the game.");
     }
 
     public void QuitGame()
