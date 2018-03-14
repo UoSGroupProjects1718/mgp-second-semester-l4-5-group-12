@@ -56,7 +56,8 @@ public class baseProjectile : MonoBehaviour {
             //GameManager TimeGetter = RemainingTime.GetComponent<GameManager>();
 
             //otherBB.blockHealth -= TimeGetter.currentTimeLimit;
-            otherBB.blockHealth -= 1;
+            otherBB.currentHealth -= 1;
+            otherBB.UpdateHealth();
 
             Destroy(gameObject);  
         }

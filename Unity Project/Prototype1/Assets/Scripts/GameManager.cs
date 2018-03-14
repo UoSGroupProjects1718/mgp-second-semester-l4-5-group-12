@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     private GameObject playerOne;
     private GameObject playerTwo;
 
+    [HideInInspector] public GameObject shootingAim;
     private GameObject[] players;
 
     //private bool currentTimeLimit;

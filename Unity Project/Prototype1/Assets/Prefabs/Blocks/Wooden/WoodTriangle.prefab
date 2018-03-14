@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4018352642875444}
   - component: {fileID: 212438446441370706}
   - component: {fileID: 50373542603322048}
-  - component: {fileID: 60503998559753872}
+  - component: {fileID: 60479630080390206}
   - component: {fileID: 114813319263842016}
   m_Layer: 10
   m_Name: WoodTriangle
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1931758056426808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 2, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &60503998559753872
+--- !u!60 &60479630080390206
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -79,7 +79,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -87,14 +87,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.3899999, y: 2.46}
-      - {x: -2.4099998, y: 2.4299998}
-      - {x: -2.4099998, y: -2.44}
-      - {x: -2.3799999, y: -2.47}
-      - {x: 2.45, y: -2.47}
-      - {x: 2.5, y: -2.45}
-      - {x: 2.5, y: -2.37}
-      - {x: -2.27, y: 2.46}
+    - - {x: -0.47800002, y: 0.492}
+      - {x: -0.48200002, y: 0.48600003}
+      - {x: -0.48200002, y: -0.48800004}
+      - {x: -0.476, y: -0.49400002}
+      - {x: 0.49, y: -0.49400002}
+      - {x: 0.5, y: -0.49}
+      - {x: 0.5, y: -0.47400004}
+      - {x: -0.45400003, y: 0.492}
 --- !u!114 &114813319263842016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,11 +107,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOwner: 0
-  blockSprites:
-  - {fileID: 21300000, guid: 468e7a4415c310247963592d97de902b, type: 3}
-  - {fileID: 21300000, guid: 6b15bd8ca30bde44cadcb9ab784f3acb, type: 3}
-  - {fileID: 21300000, guid: 142e5bed73093004a8643a5d4421bdde, type: 3}
-  blockHealth: 3
+  normalSprite: {fileID: 21300000, guid: 468e7a4415c310247963592d97de902b, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 142e5bed73093004a8643a5d4421bdde, type: 3}
+  blockHealth: 2
+  currentHealth: 0
 --- !u!212 &212438446441370706
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -146,7 +145,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 021587a7fff512e4782cf8aa65ff5267, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 468e7a4415c310247963592d97de902b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -90,11 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOwner: 0
-  blockSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  blockHealth: 3
+  normalSprite: {fileID: 21300000, guid: 75b55817fb44ff74d8da908ad11eea9f, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 384e9df8b3de33c4294b55df9fefa3c7, type: 3}
+  blockHealth: 2
+  currentHealth: 0
 --- !u!212 &212622536363809314
 SpriteRenderer:
   m_ObjectHideFlags: 1
