@@ -100,6 +100,7 @@ public class ShootingScript : MonoBehaviour
             crosshairInstance = Instantiate(aimPrefab, _aimPosition, Quaternion.identity);
         }
 
+        GameManager.GMInstance.shootingAim = crosshairInstance;
         aimLocked = true;
     }
 

@@ -1,31 +1,30 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class baseBlock : MonoBehaviour {
 
     public int playerOwner;
-    public Sprite[] blockSprites;
+    public Sprite normalSprite, damagedSprite;
+    [SerializeField] private int blockHealth;
 
-    [HideInInspector] public int blockHealth = 3;
+    [HideInInspector] public int currentHealth;
     private SpriteRenderer sr;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        currentHealth = blockHealth;
     }
 
-    private void Update()
+    public void UpdateHealth()
     {
-        if (blockHealth == 3)
+        if (currentHealth == blockHealth)
         {
-            sr.sprite = blockSprites[0];
+            sr.sprite = normalSprite;
         }
-        else if (blockHealth == 2)
+        else if (currentHealth < blockHealth)
         {
-            sr.sprite = blockSprites[1];
-        }
-        else if (blockHealth == 1)
-        {
-            sr.sprite = blockSprites[2];
+            sr.sprite = damagedSprite;
         }
 
         if (blockHealth <= 0)
