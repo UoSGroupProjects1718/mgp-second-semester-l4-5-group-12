@@ -268,6 +268,7 @@ public class GameManager : MonoBehaviour
         }
 
         turnCounter += 1;
+
     }
 
     IEnumerator DropPerkCoroutine()

@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4127917780139844}
   - component: {fileID: 212622536363809314}
-  - component: {fileID: 58960495407140500}
   - component: {fileID: 50105225043020150}
   - component: {fileID: 114918002558648264}
+  - component: {fileID: 58232248548353114}
   m_Layer: 10
   m_Name: WoodCircle
   m_TagString: WoodBlock
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58960495407140500
+--- !u!58 &58232248548353114
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -77,7 +77,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 0.512
 --- !u!114 &114918002558648264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +128,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7140dbc3373d93b43a88eecd2115d2b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ef3e3308463813479fbe7c35c6eace9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -59,7 +59,7 @@ public class ShootingScript : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && aimLocked
+        if (Input.GetKeyDown(KeyCode.Space) && aimLocked
            && playerNumber == currentRound && canShoot)
         {
             SpawnProjectile(screenPos);
@@ -73,17 +73,28 @@ public class ShootingScript : MonoBehaviour
 
             if (playerNumber == currentRound && canShoot)
             {
-                mousePosition   = Input.mousePosition;
-                screenPos       = Camera.main.ScreenToWorldPoint(mousePosition);
-                screenPos.z     = 0.0f;
+                mousePosition = Input.mousePosition;
+
+                screenPos = GetWorldPositionOnPlane(mousePosition, 0);
+
+                //screenPos       = Camera.main.ScreenToWorldPoint(mousePosition);
+                //screenPos.z     = 0.0f;
 
                 LockAim(screenPos);
             }
         }
     }
 
-    //GetMouseButtonDown(0)
-    //GetKeyDown(KeyCode.Space)
+    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+        Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
+
+        float distance;
+
+        xy.Raycast(ray, out distance);
+        return ray.GetPoint(distance);
+    }
 
     private void LockAim(Vector3 _aimPosition)
     {

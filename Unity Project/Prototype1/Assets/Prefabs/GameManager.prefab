@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1540785315293924}
+  m_IsPrefabParent: 1
+--- !u!1 &1540785315293924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4032908165979102}
+  - component: {fileID: 114427793429242684}
+  - component: {fileID: 114333230760562850}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4032908165979102
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540785315293924}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114333230760562850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540785315293924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cb289df2fba854e8af513f25df3f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraObject: {fileID: 0}
+  cameraPanLength: 3
+  cameraZoomLength: 6
+  minOrthoSize: 1
+  maxOrthoSize: 99
+  cameraMoving: 0
+  cameraResize: 0
+--- !u!114 &114427793429242684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540785315293924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40014aae0972e6846876ad56981f0036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOneCameraPos: {x: -65, y: 5, z: -20}
+  playerTwoCameraPos: {x: 65, y: 5, z: -20}
+  intermissionPos: {x: 0, y: 0, z: -20}
+  playerOneCamSize: 40
+  playerTwoCamSize: 40
+  intermissionCamSize: 60
+  currentRoundState: 3
+  turnText: {fileID: 0}
+  timerText: {fileID: 0}
+  intervalTime: 0
+  turnCounter: 0
+  playerTurn: 0
+  currentIntervalTime: 0
+  canShoot: 0
+  cameraMoving: 0
+  shootingAim: {fileID: 0}
+  currentTimeLimit: 0
+  timeLimit: 5.04
