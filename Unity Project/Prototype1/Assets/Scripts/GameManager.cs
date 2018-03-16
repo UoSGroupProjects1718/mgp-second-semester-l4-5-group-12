@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
     public RoundState currentRoundState = RoundState.INTERMISSION;
     [SerializeField] private Text turnText; //Text showing the turn
     [SerializeField] private Text timerText; //Text showing the remaining time in that turn
-    [SerializeField] private float turnDelay; //Time between each turn (interval time)
+    [SerializeField] private float intervalTime; //Time between each turn (interval time)
     [SerializeField] private int turnCounter; //Keeps track of whose turn it is
 
     // Debug duh.
     [Header("Debug Stuff")]
     public int playerTurn;  //Why is this a public variable?
-    [SerializeField] private float currentTurnDelay; //Counts down the interval time, is reset by setting as turnDelay
+    [SerializeField] private float currentIntervalTime; //Counts down the interval time, is reset by setting as IntervalTime
 
     [HideInInspector] public bool canShoot; //Is shooting enabled?
     [HideInInspector] public bool cameraMoving; //Is the camera moving?
@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Camera already referenced? HOW?");
         }
 
+        currentIntervalTime = intervalTime;
         ChangeTurn();
 	}
 
@@ -153,39 +154,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update ()
+    private void Update ()  //Every frame
     {
-        if (!cameraMoving && turnText.isActiveAndEnabled)
+        if (!cameraMoving && turnText.isActiveAndEnabled) //If the camera is NOT currently moving and the turn text is visible
         {
-            timerText.enabled = false;
-            turnText.enabled = false;
-            canShoot = true;
+            timerText.enabled = false; //Disable the visible timer
+            turnText.enabled = false; //Disable the visible turn text
+            canShoot = true; //The player can now shoot
         }
 
         // Our timer for turn delay.
-        if (intermissionCounter == true)
-        {
-            // Once we hit zero, we change the turn.
-            if (currentTurnDelay <= 0)
-            {
-                intermissionCounter = false;
-                currentTurnDelay = 0;
-                currentRoundState = RoundState.PLAYING;
-                HandleTurnChange();
-            }
-
+        if (intermissionCounter == true) //If the game state is currently INTERMISSION
+        {        
             // Take deltaTime every frame.
-            currentTurnDelay -= Time.deltaTime;
-            timerText.text = currentTurnDelay.ToString("0");
-
+            currentIntervalTime -= Time.deltaTime; //Decrease the remaining intermission time by a deltatime
+            timerText.text = currentIntervalTime.ToString("0"); //Change the timer text to match the current interval time
+            // Once we hit zero, we change the turn.
+            if (currentIntervalTime <= 0) //When the interval time reaches zero
+            {
+                intermissionCounter = false; //Stop the interval counter
+                currentIntervalTime = intervalTime; //Set the interval time to the set maximum
+                currentRoundState = RoundState.PLAYING; //Change the game state to PLAYING
+                HandleTurnChange(); //Run the turn change code.
+            }
+          
         if(isCountingDown == true) //if the timer is counting down
         {
-            if (currentTimeLimit <= 0)
+            if (currentTimeLimit <= 0)  //If the turn time reaches 0
             {
-                isCountingDown = false;
-                currentTimeLimit = timeLimit;
-                currentRoundState = RoundState.INTERMISSION;
-                HandleTurnChange();
+                isCountingDown = false; //The timer should stop counting down
+                currentRoundState = RoundState.INTERMISSION; //Set the game state as INTERMISSION
+                currentTimeLimit = timeLimit; //the timer should reset to the maximum
+                
+                HandleTurnChange(); //Run the turn changing code
             }
         }
 
@@ -204,7 +205,7 @@ public class GameManager : MonoBehaviour
         turnText.text = "Intermision";   
 
         // Change turn currentTimeLimit.
-        currentTurnDelay = turnDelay;
+        currentIntervalTime = intervalTime;
         canShoot = false;
         intermissionCounter = true;
         turnText.enabled = true;
