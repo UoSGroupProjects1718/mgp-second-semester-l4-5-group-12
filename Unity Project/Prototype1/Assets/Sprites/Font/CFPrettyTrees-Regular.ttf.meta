@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b66b7553ffe285b469387fa2b3e7f7e5
+timeCreated: 1521212162
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: CF Pretty Trees
+  fontNames:
+  - CF Pretty Trees
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

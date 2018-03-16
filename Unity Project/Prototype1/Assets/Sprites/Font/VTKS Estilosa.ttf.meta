@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5edd582dbba254843afc605af41b4d71
+timeCreated: 1521212162
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: VTKS Estilosa
+  fontNames:
+  - VTKS Estilosa
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

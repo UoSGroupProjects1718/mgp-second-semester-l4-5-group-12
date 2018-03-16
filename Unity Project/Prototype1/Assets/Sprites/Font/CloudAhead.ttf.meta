@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 44b8250766136f04b83c6d9890175e16
+timeCreated: 1521212162
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: CloudAhead
+  fontNames:
+  - CloudAhead
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
