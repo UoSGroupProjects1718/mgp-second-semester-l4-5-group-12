@@ -59,7 +59,7 @@ public class baseProjectile : MonoBehaviour {
             otherBB.currentHealth -= 1;
             otherBB.UpdateHealth();
 
-            Destroy(gameObject);  
+//            Destroy(gameObject);  
         }
 
         if (other.gameObject.tag == "Player") 
