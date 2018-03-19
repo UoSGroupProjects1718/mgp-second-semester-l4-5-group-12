@@ -41,18 +41,18 @@ public class GameManager : MonoBehaviour
      // Don't think this needs to be public?
     [Header("Turn Settings")]
     public RoundState currentRoundState = RoundState.INTERMISSION;
-    [SerializeField] private Text turnText; //Text showing the turn
-    [SerializeField] private Text timerText; //Text showing the remaining time in that turn
-    [SerializeField] private float intervalTime; //Time between each turn (interval time)
-    [SerializeField] private int turnCounter; //Keeps track of whose turn it is
+    [SerializeField] private Text turnText; 
+    [SerializeField] private Text timerText; 
+    [SerializeField] private float intervalTime;
+    [SerializeField] private int turnCounter; 
 
     // Debug duh.
     [Header("Debug Stuff")]
-    public int playerTurn;  //Why is this a public variable?
-    [SerializeField] private float currentIntervalTime; //Counts down the interval time, is reset by setting as IntervalTime
+    public int playerTurn; 
+    [SerializeField] private float currentIntervalTime;
 
-    [HideInInspector] public bool canShoot; //Is shooting enabled?
-    [HideInInspector] public bool cameraMoving; //Is the camera moving?
+    [HideInInspector] public bool canShoot; 
+    [HideInInspector] public bool cameraMoving; 
 
     private Camera mapCamera;
     private GameObject playerOne;
@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
 
     //private bool currentTimeLimit;
     [Header("Countdown Stuff")]
-    public float currentTimeLimit;  //Time remaining in the current turn, is reset by setting as timeLimit 
-    [SerializeField] private float timeLimit; //Time for each turn
-    private bool isCountingDown = false; //Is the countdown currently running?
+    public float currentTimeLimit;  
+    [SerializeField] private float timeLimit; 
+    private bool isCountingDown = false; 
     private bool intermissionCounter; 
 
     private void Awake () 
@@ -154,39 +154,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update ()  //Every frame
+    private void Update () 
     {
-        if (!cameraMoving && turnText.isActiveAndEnabled) //If the camera is NOT currently moving and the turn text is visible
+        if (!cameraMoving && turnText.isActiveAndEnabled) 
         {
-            timerText.enabled = false; //Disable the visible timer
-            turnText.enabled = false; //Disable the visible turn text
-            canShoot = true; //The player can now shoot
+            timerText.enabled = false; 
+            turnText.enabled = false; 
+            canShoot = true; 
         }
 
-        // Our timer for turn delay.
-        if (intermissionCounter == true) //If the game state is currently INTERMISSION
+        if (intermissionCounter == true) 
         {        
-            // Take deltaTime every frame.
-            currentIntervalTime -= Time.deltaTime; //Decrease the remaining intermission time by a deltatime
-            timerText.text = currentIntervalTime.ToString("0"); //Change the timer text to match the current interval time
-            // Once we hit zero, we change the turn.
-            if (currentIntervalTime <= 0) //When the interval time reaches zero
+            currentIntervalTime -= Time.deltaTime; 
+            timerText.text = currentIntervalTime.ToString("0");
+            
+            if (currentIntervalTime <= 0)
             {
-                intermissionCounter = false; //Stop the interval counter
-                currentIntervalTime = intervalTime; //Set the interval time to the set maximum
-                currentRoundState = RoundState.PLAYING; //Change the game state to PLAYING
-                HandleTurnChange(); //Run the turn change code.
+                intermissionCounter = false; 
+                currentIntervalTime = intervalTime;
+                currentRoundState = RoundState.PLAYING; 
+                HandleTurnChange(); 
             }
           
-        if(isCountingDown == true) //if the timer is counting down
+        if(isCountingDown == true) 
         {
-            if (currentTimeLimit <= 0)  //If the turn time reaches 0
+            if (currentTimeLimit <= 0) 
             {
-                isCountingDown = false; //The timer should stop counting down
-                currentRoundState = RoundState.INTERMISSION; //Set the game state as INTERMISSION
-                currentTimeLimit = timeLimit; //the timer should reset to the maximum
+                isCountingDown = false;
+                currentRoundState = RoundState.INTERMISSION; 
+                currentTimeLimit = timeLimit; 
                 
-                HandleTurnChange(); //Run the turn changing code
+                HandleTurnChange();
             }
         }
 
@@ -202,7 +200,9 @@ public class GameManager : MonoBehaviour
 
         CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCamSize);
 
-        turnText.text = "Intermision";   
+        turnText.text = "Intermision";
+
+        DropPerk();
 
         // Change turn currentTimeLimit.
         currentIntervalTime = intervalTime;
@@ -220,15 +220,11 @@ public class GameManager : MonoBehaviour
 
     private void HandleTurnChange () 
     {
-        //StartCoroutine(ChangeTurnIE());
-        //Debug.Log("Changing turn.");
         timerText.enabled = false;
 
         if (playerTurn == 0)
         {
-            // Debug.Log("Changing to player 1");
             // The game just began, do stuff and start the game.
-
             CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
@@ -238,9 +234,7 @@ public class GameManager : MonoBehaviour
         }
         else if (playerTurn == 1)
         {
-            // Debug.Log("Changing to player 2");
             // It's player 1's turn -> Change to player 2.
-
             CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCamSize);
 
             playerTurn += 1;
@@ -250,9 +244,7 @@ public class GameManager : MonoBehaviour
         }
         else if (playerTurn == 2)
         {
-            // Debug.Log("Changing to player 1");
             // It's player 2's turn -> Change to player 1.
-
             CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
@@ -271,14 +263,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    IEnumerator DropPerkCoroutine()
+    private void DropPerk()
     {
-        yield return new WaitForSeconds(3.0f);
-        // .. do stuff here
-    }
-
-    public Coroutine DropPerk()
-    {
-        return StartCoroutine(DropPerkCoroutine());
+        // Camera is zoomed out for the intermission, no need to move the camera unles we want to zoom into the perk.
+        Debug.Log("Instantiate a perk here.");
     }
 }
