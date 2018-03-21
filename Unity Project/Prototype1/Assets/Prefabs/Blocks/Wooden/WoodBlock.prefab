@@ -36,9 +36,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196835247771272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5, y: -5, z: 0}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 83f175ca256fd1c478fa9aab5f908090, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 2
   m_CollisionDetection: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983ba98f7b178b54ea4f016de72f9570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOwner: 0
+  playerOwner: 2
   normalSprite: {fileID: 21300000, guid: f58696f4defb4c54e99ab0abe3920f08, type: 3}
   damagedSprite: {fileID: 21300000, guid: 0d4f80baa2b505f48be24def281bc545, type: 3}
   blockHealth: 2
