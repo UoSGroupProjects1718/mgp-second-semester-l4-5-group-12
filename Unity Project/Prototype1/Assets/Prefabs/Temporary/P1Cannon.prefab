@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114461483192757618}
   - component: {fileID: 61860092351546136}
   - component: {fileID: 61192652090413010}
+  - component: {fileID: 50658888530094478}
   m_Layer: 8
   m_Name: playerBlueCannon
   m_TagString: Cannon
@@ -66,13 +67,33 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1726517325480542}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.579, y: 5, z: 0}
+  m_LocalScale: {x: 1.0526316, y: 1.1111112, z: 1}
   m_Children:
   - {fileID: 4392804387300254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50658888530094478
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578641524629456}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 1
 --- !u!61 &61192652090413010
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -139,7 +160,7 @@ MonoBehaviour:
   aimPrefab: {fileID: 1535579388965144, guid: fae6aa37728d3c64aac6b7316c571b2d, type: 2}
   dummyProjectilePrefab: {fileID: 1512072500603160, guid: 69cd039ea1b7bec43a6b7eca94430603,
     type: 2}
-  shootForceMultiplier: 11.6
+  shootForceMultiplier: 0.2
 --- !u!114 &114785159883921768
 MonoBehaviour:
   m_ObjectHideFlags: 1

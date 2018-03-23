@@ -31,16 +31,16 @@ public class GameManager : MonoBehaviour
 
     // Most below will be probably assigned in script some time soon.
     [Header("Player's Positions")]
-    [SerializeField] private Vector3 playerOneCameraPos = new Vector3(-25, 0, -10);
-    [SerializeField] private Vector3 playerTwoCameraPos = new Vector3(25, 0, -10);
-    [SerializeField] private Vector3 intermissionPos = new Vector3(0, 0, -10);
+    [SerializeField] private Vector3 playerOneCameraPos; //= new Vector3(-25, 0, -10);
+    [SerializeField] private Vector3 playerTwoCameraPos; //= new Vector3(25, 0, -10);
+    [SerializeField] private Vector3 intermissionPos; //= new Vector3(0, 0, -10);
     [SerializeField] private float playerOneCamSize = 10;
     [SerializeField] private float playerTwoCamSize = 10;
     [SerializeField] private float intermissionCamSize = 15;
 
      // Don't think this needs to be public?
     [Header("Turn Settings")]
-    public RoundState currentRoundState = RoundState.INTERMISSION;
+    public RoundState currentRoundState = RoundState.INTERMISSION; 
     [SerializeField] private Text turnText; 
     [SerializeField] private Text timerText; 
     [SerializeField] private float intervalTime;
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
 
         CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCamSize);
 
-        turnText.text = "Intermision";
+        turnText.text = "Intermission";
 
         DropPerk();
 
@@ -213,11 +213,14 @@ public class GameManager : MonoBehaviour
         currentTimeLimit = timeLimit;
     }
 
+    //UI stuff 
     private void UpdateUI() 
     {
 
     }
 
+
+    //TURN CHANGING
     private void HandleTurnChange () 
     {
         timerText.enabled = false;
@@ -263,6 +266,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //PERK SYSTEM
     private void DropPerk()
     {
         // Camera is zoomed out for the intermission, no need to move the camera unles we want to zoom into the perk.

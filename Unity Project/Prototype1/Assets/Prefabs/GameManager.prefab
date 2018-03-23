@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1540785315293924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,16 +70,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40014aae0972e6846876ad56981f0036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOneCameraPos: {x: -65, y: 5, z: -20}
-  playerTwoCameraPos: {x: 65, y: 5, z: -20}
-  intermissionPos: {x: 0, y: 0, z: -20}
-  playerOneCamSize: 40
-  playerTwoCamSize: 40
-  intermissionCamSize: 60
-  currentRoundState: 3
+  playerOneCameraPos: {x: 12, y: 10, z: -10}
+  playerTwoCameraPos: {x: -11, y: 10, z: -10}
+  intermissionPos: {x: 0, y: 10, z: -10}
+  playerOneCamSize: 20
+  playerTwoCamSize: 20
+  intermissionCamSize: 50
+  currentRoundState: 1
   turnText: {fileID: 0}
   timerText: {fileID: 0}
-  intervalTime: 0
+  intervalTime: 5
   turnCounter: 0
   playerTurn: 0
   currentIntervalTime: 0
