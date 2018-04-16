@@ -30,13 +30,14 @@ public class GameManager : MonoBehaviour
     public enum RoundState { MENU, INTERMISSION, PLAYING }
 
     // Most below will be probably assigned in script some time soon.
-    [Header("Player's Positions")]
+    [Header("Player's Settings")]
     [SerializeField] private Vector3 playerOneCameraPos; //= new Vector3(-25, 0, -10);
     [SerializeField] private Vector3 playerTwoCameraPos; //= new Vector3(25, 0, -10);
     [SerializeField] private Vector3 intermissionPos; //= new Vector3(0, 0, -10);
     [SerializeField] private float playerOneCamSize = 10;
     [SerializeField] private float playerTwoCamSize = 10;
     [SerializeField] private float intermissionCamSize = 15;
+    public float baseDamage = 5;
 
      // Don't think this needs to be public?
     [Header("Turn Settings")]
@@ -51,6 +52,10 @@ public class GameManager : MonoBehaviour
     public int playerTurn; 
     [SerializeField] private float currentIntervalTime;
 
+    [Header("Countdown Stuff")]
+    public float currentTimeLimit;
+    [SerializeField] private float timeLimit;
+
     [HideInInspector] public bool canShoot; 
     [HideInInspector] public bool cameraMoving; 
 
@@ -62,9 +67,6 @@ public class GameManager : MonoBehaviour
     private GameObject[] players;
 
     //private bool currentTimeLimit;
-    [Header("Countdown Stuff")]
-    public float currentTimeLimit;  
-    [SerializeField] private float timeLimit; 
     private bool isCountingDown = false; 
     private bool intermissionCounter; 
 
@@ -160,37 +162,37 @@ public class GameManager : MonoBehaviour
         {
             timerText.enabled = false; 
             turnText.enabled = false; 
-            canShoot = true; 
+            canShoot = true;
+            isCountingDown = true;
         }
 
-        if (intermissionCounter == true) 
-        {        
-            currentIntervalTime -= Time.deltaTime; 
+        if (intermissionCounter == true)
+        {
+            currentIntervalTime -= Time.deltaTime;
             timerText.text = currentIntervalTime.ToString("0");
-            
+
             if (currentIntervalTime <= 0)
             {
-                intermissionCounter = false; 
+                intermissionCounter = false;
                 currentIntervalTime = intervalTime;
-                currentRoundState = RoundState.PLAYING; 
-                HandleTurnChange(); 
-            }
-          
-        if(isCountingDown == true) 
-        {
-            if (currentTimeLimit <= 0) 
-            {
-                isCountingDown = false;
-                currentRoundState = RoundState.INTERMISSION; 
-                currentTimeLimit = timeLimit; 
-                
+                currentRoundState = RoundState.PLAYING;
                 HandleTurnChange();
             }
         }
 
+        if (isCountingDown == true)
+        {
             currentTimeLimit -= Time.deltaTime;
             timerText.text = currentTimeLimit.ToString("0");
-                   
+
+            if (currentTimeLimit <= 0)
+            {
+                isCountingDown = false;
+                currentTimeLimit = timeLimit;
+                timerText.enabled = false;
+
+                ChangeTurn();
+            }
         }
     }
 
@@ -233,7 +235,6 @@ public class GameManager : MonoBehaviour
             playerTurn += 1;
             //canShoot = true;
             turnText.text = "Player 1 Turn.";
-            isCountingDown = true;
         }
         else if (playerTurn == 1)
         {
@@ -243,7 +244,6 @@ public class GameManager : MonoBehaviour
             playerTurn += 1;
             //canShoot = true;
             turnText.text = "Player 2 Turn.";
-            isCountingDown = true;
         }
         else if (playerTurn == 2)
         {
@@ -253,13 +253,11 @@ public class GameManager : MonoBehaviour
             playerTurn += 1;
             //canShoot = true;
             turnText.text = "Player 1 Turn.";
-            isCountingDown = true;
         }
 
         // If the turn number is higher than the player's we have, we go back to player 1.
         if (playerTurn > players.Length) {
             playerTurn = 1;
-            isCountingDown = true;
         }
 
         turnCounter += 1;
