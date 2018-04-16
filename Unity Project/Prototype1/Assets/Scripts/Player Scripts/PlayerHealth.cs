@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
 
-    public int currentHealth;
+    public float currentHealth;
 
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float maxHealth = 100;
     //Sets the maximum health of the player's core.
-    [SerializeField] private int ProjectileDamage = 10;
+    [SerializeField] private float ProjectileDamage;
     //Sets the amount of damage that a projectile does to the core.
     [SerializeField] private string tagName;
     //Editable tag used to determine when damage is dealt.
@@ -16,16 +16,15 @@ public class PlayerHealth : MonoBehaviour {
     private void Start()
     {
         currentHealth = maxHealth;
+        ProjectileDamage = GameManager.GMInstance.baseDamage;
         //Resets the current health to the maximum.
     }
 
     void OnCollisionEnter2D(Collision2D collider)
-        //When a projectile hits the core,
     {
         if (collider.gameObject.tag == tagName)
-            //If the projectile's tag is the same as the core's 'tag',
         {
-            currentHealth -= ProjectileDamage;
+            currentHealth -= ProjectileDamage * GameManager.GMInstance.currentTimeLimit;
             //Decrease the current health by the projectile damage.
             Destroy(collider.gameObject);
             //Destroy the projectile.

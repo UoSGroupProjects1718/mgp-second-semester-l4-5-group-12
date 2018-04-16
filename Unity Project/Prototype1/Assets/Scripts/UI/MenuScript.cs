@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
-    [SerializeField] private int gameScene;
+    [SerializeField] private int alphaScene;
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(gameScene);
-		Debug.Log("Play the game.");
+        SceneManager.LoadScene("alphaScene");
+		Debug.Log("Playing the game.");
+    }
+
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene("tutorialScreen");
+        Debug.Log("Tutorial screen loading.");
     }
 
     public void QuitGame()
