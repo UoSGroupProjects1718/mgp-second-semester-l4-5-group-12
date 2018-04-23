@@ -22,12 +22,14 @@ using UnityEngine.UI;
  *  
 */
 
+public enum RoundState { MENU, INTERMISSION, PLAYING, GAMEOVER }
+
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager GMInstance;
 
-    public enum RoundState { MENU, INTERMISSION, PLAYING }
+    //public enum RoundState { MENU, INTERMISSION, PLAYING, GAMEOVER }
 
     // Most below will be probably assigned in script some time soon.
     [Header("Player's Settings")]
@@ -45,7 +47,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text turnText; 
     [SerializeField] private Text timerText; 
     [SerializeField] private float intervalTime;
-    [SerializeField] private int turnCounter; 
+    [SerializeField] private int turnCounter;
+
+    [SerializeField] public Text winningPlayer;
 
     // Debug duh.
     [Header("Debug Stuff")]
@@ -213,6 +217,8 @@ public class GameManager : MonoBehaviour
         turnText.enabled = true;
         timerText.enabled = true;
         currentTimeLimit = timeLimit;
+        isCountingDown = false;
+        currentTimeLimit = timeLimit;
     }
 
     //UI stuff 
@@ -261,7 +267,17 @@ public class GameManager : MonoBehaviour
         }
 
         turnCounter += 1;
+        isCountingDown = false;
+        currentTimeLimit = timeLimit;
+    }
 
+    public void GameOverScreen()
+    {
+        //if (currentRoundState == RoundState.GAMEOVER)
+        //{
+        //winningPlayer.text = "";
+        //}
+        Debug.Log("meme");
     }
 
     //PERK SYSTEM
