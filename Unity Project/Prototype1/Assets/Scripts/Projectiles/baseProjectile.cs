@@ -19,16 +19,16 @@ using UnityEngine;
  */
 
 public class baseProjectile : MonoBehaviour {
-
-	[Header("Projectile Variables")]
-    [Tooltip("This is how much damage the projectile will deal.")]
-    [SerializeField] private float projectileDamage;
-
+    private float projectileDamage;
+    private float speed;
 
     [HideInInspector] public int playerOwner;
 
-    float speed;
-    
+    private void Start()
+    {
+        projectileDamage = GameManager.GMInstance.baseDamage;
+    }
+
     private void Update()
     {
         if (this.transform.position.y <= -45)
@@ -41,7 +41,7 @@ public class baseProjectile : MonoBehaviour {
         {
             PlayerController _playerController = other.gameObject.GetComponent<PlayerController>();
 
-            _playerController.currentHealth -= projectileDamage;
+            _playerController.currentHealth -= projectileDamage * GameManager.GMInstance.currentTimeLimit;
         }
     }
 
@@ -59,7 +59,7 @@ public class baseProjectile : MonoBehaviour {
             otherBB.currentHealth -= 1;
             otherBB.UpdateHealth();
 
-//            Destroy(gameObject);  
+            //Destroy(gameObject);  
         }
 
         if (other.gameObject.tag == "Player") 
