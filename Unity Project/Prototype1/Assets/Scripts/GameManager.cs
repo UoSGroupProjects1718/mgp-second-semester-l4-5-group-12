@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /*
  * GameManager Script
@@ -49,7 +50,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float intervalTime;
     [SerializeField] private int turnCounter;
 
+    [SerializeField] public GameObject restartButton;
     [SerializeField] public Text winningPlayer;
+    [SerializeField] public bool isGameOver = false;
+    public GameObject gameOverText;
 
     // Debug duh.
     [Header("Debug Stuff")]
@@ -97,6 +101,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Camera already referenced? HOW?");
         }
 
+        gameOverText.SetActive(false);
+        restartButton.SetActive(false);
         currentIntervalTime = intervalTime;
         ChangeTurn();
 	}
@@ -162,6 +168,8 @@ public class GameManager : MonoBehaviour
 
     private void Update () 
     {
+        Debug.Log(isGameOver);
+
         if (!cameraMoving && turnText.isActiveAndEnabled) 
         {
             timerText.enabled = false; 
@@ -194,6 +202,8 @@ public class GameManager : MonoBehaviour
                 isCountingDown = false;
                 currentTimeLimit = timeLimit;
                 timerText.enabled = false;
+                
+                
 
                 ChangeTurn();
             }
@@ -202,6 +212,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeTurn ()
     {
+        Destroy(shootingAim);
+
         currentRoundState = RoundState.INTERMISSION;
 
         CameraManager.CMInstance.MoveCamera(intermissionPos, intermissionCamSize);
@@ -273,11 +285,18 @@ public class GameManager : MonoBehaviour
 
     public void GameOverScreen()
     {
-        //if (currentRoundState == RoundState.GAMEOVER)
-        //{
-        //winningPlayer.text = "";
-        //}
-        Debug.Log("meme");
+        if (isGameOver == true)
+        {
+            Debug.Log("GameOver");
+            gameOverText.SetActive(true);
+            restartButton.SetActive(true);
+        }
+    }
+
+    public void RestartGame()
+    {
+        Debug.Log("Game restarted");
+        SceneManager.LoadScene("menuScreen");
     }
 
     //PERK SYSTEM

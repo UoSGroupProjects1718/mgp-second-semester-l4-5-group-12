@@ -58,7 +58,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 148cca75520741243a82fccdc3a9f6fc, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48a3a7c637734042b8c7e9a257baed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileDamage: 1
   playerOwner: 0
 --- !u!212 &212414136779526198
 SpriteRenderer:

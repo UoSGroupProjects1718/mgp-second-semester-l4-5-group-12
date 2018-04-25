@@ -59,8 +59,12 @@ public class ShootingScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && aimLocked
-           && playerNumber == currentRound && canShoot)
+        if (GameManager.GMInstance.shootingAim)
+            aimLocked = true;
+        else
+            aimLocked = false;
+
+        if (Input.GetKeyDown(KeyCode.Space) && aimLocked && playerNumber == currentRound && canShoot)
         {
             SpawnProjectile(screenPos);
         }
@@ -112,7 +116,6 @@ public class ShootingScript : MonoBehaviour
         }
 
         GameManager.GMInstance.shootingAim = crosshairInstance;
-        aimLocked = true;
     }
 
     private void SpawnProjectile(Vector3 _shootPosition) 

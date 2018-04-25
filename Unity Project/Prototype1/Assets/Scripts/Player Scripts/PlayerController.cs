@@ -57,9 +57,10 @@ public class PlayerController : MonoBehaviour {
 
         if (currentHealth <= 0 && gameObject.tag == "Player")
         {
+            GameManager.GMInstance.isGameOver = true;
             GameManager.GMInstance.currentRoundState = RoundState.GAMEOVER;
             GameManager.GMInstance.GameOverScreen();
-            GameManager.GMInstance.winningPlayer.text = playerName + "Wins!";
+            GameManager.GMInstance.winningPlayer.text = playerName + " Wins!";
         }
 
         //if (currentHealth <= 0)

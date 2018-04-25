@@ -23,6 +23,7 @@ public class baseProjectile : MonoBehaviour {
     private float speed;
 
     [HideInInspector] public int playerOwner;
+    private int hitAmnt = 3;
 
     private void Start()
     {
@@ -33,6 +34,9 @@ public class baseProjectile : MonoBehaviour {
     {
         if (this.transform.position.y <= -45)
             Destroy(this.gameObject);
+
+        if (hitAmnt <= 0)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -49,17 +53,12 @@ public class baseProjectile : MonoBehaviour {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
-
             baseBlock otherBB = other.gameObject.GetComponent<baseBlock>();
 
-            //GameObject RemainingTime = GameObject.Find("GameManager");
-            //GameManager TimeGetter = RemainingTime.GetComponent<GameManager>();
-
-            //otherBB.blockHealth -= TimeGetter.currentTimeLimit;
             otherBB.currentHealth -= 1;
             otherBB.UpdateHealth();
 
-            //Destroy(gameObject);  
+            hitAmnt -= 1;
         }
 
         if (other.gameObject.tag == "Player") 
@@ -67,15 +66,10 @@ public class baseProjectile : MonoBehaviour {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Destroy(gameObject);
         }
+    }
 
-        if (other.gameObject.tag == "Block") 
-        {
-            baseBlock otherBlock = other.gameObject.GetComponent<baseBlock>();
-
-            if (otherBlock.playerOwner == playerOwner) 
-            {
-                Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            }
-        }
+    public void DestroyProjectile()
+    {
+        Destroy(gameObject);
     }
 }

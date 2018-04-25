@@ -26,13 +26,20 @@ public class PlayerHealth : MonoBehaviour {
 
     private void Update()
     {
+        
         if (currentHealth <= 0)
         {
-            GameManager.GMInstance.currentRoundState = RoundState.GAMEOVER;
+            //GameManager.GMInstance.currentRoundState = RoundState.GAMEOVER;
+            //GameManager.GMInstance.winningPlayer.text = playerName + "Wins!"; 
+            GameManager.GMInstance.isGameOver = true;
             GameManager.GMInstance.GameOverScreen();
-            GameManager.GMInstance.winningPlayer.text = playerName + "Wins!";
         }
+
+        if(GameManager.GMInstance.isGameOver && currentHealth > 0)
+            GameManager.GMInstance.winningPlayer.text = playerName + "Wins!";
     }
+
+
 
     void OnCollisionEnter2D(Collision2D collider)
     {
