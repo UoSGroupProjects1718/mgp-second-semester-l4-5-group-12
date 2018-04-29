@@ -17,7 +17,6 @@ using UnityEngine.SceneManagement;
  * At the moment we don't need a turn timer, it will only become annoying when we test the game.
  * 
  * TODO:     
- *  - Between the turns there should be "perk" drop (imagine WORMS game)
  *  - The camera moves to where the player's base is (zoomed out),
  *      but once the player taps to start the turn the camera zooms in.
  *  
@@ -220,8 +219,6 @@ public class GameManager : MonoBehaviour
 
         turnText.text = "Intermission";
 
-        DropPerk();
-
         // Change turn currentTimeLimit.
         currentIntervalTime = intervalTime;
         canShoot = false;
@@ -297,12 +294,5 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game restarted");
         SceneManager.LoadScene("menuScreen");
-    }
-
-    //PERK SYSTEM
-    private void DropPerk()
-    {
-        // Camera is zoomed out for the intermission, no need to move the camera unles we want to zoom into the perk.
-        Debug.Log("Instantiate a perk here.");
     }
 }
