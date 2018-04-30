@@ -13,12 +13,6 @@ using UnityEngine.SceneManagement;
  * Once the game idea expands, this script will be used to handle more and more things,
  * most likely it will have its own functions and such; ideally have it work with a player manager,
  * so this way we can keep this script neater. For now, most things will be done here for the prototypes.
- * 
- * At the moment we don't need a turn timer, it will only become annoying when we test the game.
- * 
- * TODO:     
- *  - The camera moves to where the player's base is (zoomed out),
- *      but once the player taps to start the turn the camera zooms in.
  *  
 */
 
@@ -31,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     //public enum RoundState { MENU, INTERMISSION, PLAYING, GAMEOVER }
 
-    // Most below will be probably assigned in script some time soon.
     [Header("Player's Settings")]
     [SerializeField] private Vector3 playerOneCameraPos; //= new Vector3(-25, 0, -10);
     [SerializeField] private Vector3 playerTwoCameraPos; //= new Vector3(25, 0, -10);
@@ -41,7 +34,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float intermissionCamSize = 15;
     public float baseDamage = 5;
 
-     // Don't think this needs to be public?
     [Header("Turn Settings")]
     public RoundState currentRoundState = RoundState.INTERMISSION; 
     [SerializeField] private Text turnText; 
@@ -54,7 +46,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool isGameOver = false;
     public GameObject gameOverText;
 
-    // Debug duh.
     [Header("Debug Stuff")]
     public int playerTurn; 
     [SerializeField] private float currentIntervalTime;
@@ -75,7 +66,8 @@ public class GameManager : MonoBehaviour
 
     //private bool currentTimeLimit;
     private bool isCountingDown = false; 
-    private bool intermissionCounter; 
+    private bool intermissionCounter;
+    public bool isProjectile = false;
 
     private void Awake () 
     {
@@ -89,6 +81,10 @@ public class GameManager : MonoBehaviour
 
     private void Start () 
     {
+        isGameOver = false;
+        isCountingDown = false;
+        isProjectile = false;
+
         AssignPlayers();
 
         if (!mapCamera)
@@ -103,6 +99,8 @@ public class GameManager : MonoBehaviour
         gameOverText.SetActive(false);
         restartButton.SetActive(false);
         currentIntervalTime = intervalTime;
+        Physics2D.IgnoreLayerCollision(0, 9, true);
+        Physics2D.IgnoreLayerCollision(8, 9, true);
         ChangeTurn();
 	}
 
@@ -169,7 +167,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(isGameOver);
 
-        if (!cameraMoving && turnText.isActiveAndEnabled) 
+        if (!cameraMoving && turnText.isActiveAndEnabled && !isProjectile) 
         {
             timerText.enabled = false; 
             turnText.enabled = false; 
@@ -201,9 +199,7 @@ public class GameManager : MonoBehaviour
                 isCountingDown = false;
                 currentTimeLimit = timeLimit;
                 timerText.enabled = false;
-                
-                
-
+                              
                 ChangeTurn();
             }
         }
@@ -229,13 +225,6 @@ public class GameManager : MonoBehaviour
         isCountingDown = false;
         currentTimeLimit = timeLimit;
     }
-
-    //UI stuff 
-    private void UpdateUI() 
-    {
-
-    }
-
 
     //TURN CHANGING
     private void HandleTurnChange () 
@@ -271,10 +260,10 @@ public class GameManager : MonoBehaviour
         }
 
         // If the turn number is higher than the player's we have, we go back to player 1.
-        if (playerTurn > players.Length) {
+        if (playerTurn > players.Length)
+        {
             playerTurn = 1;
         }
-
         turnCounter += 1;
         isCountingDown = false;
         currentTimeLimit = timeLimit;
@@ -294,5 +283,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game restarted");
         SceneManager.LoadScene("menuScreen");
+        gameOverText.SetActive(false);
+        restartButton.SetActive(false);
+        isGameOver = false;
     }
 }

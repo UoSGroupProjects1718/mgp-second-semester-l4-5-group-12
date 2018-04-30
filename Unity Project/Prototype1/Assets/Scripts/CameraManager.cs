@@ -64,8 +64,12 @@ public class CameraManager : MonoBehaviour {
 
     private void Update ()
     {
-        if (!cameraMoving && !cameraResize)
+        if (!cameraMoving && !cameraResize && !GameManager.GMInstance.isGameOver)
             GameManager.GMInstance.cameraMoving = false;
+        else if (GameManager.GMInstance.isGameOver)
+        {
+            gameObject.GetComponent<CameraManager>().enabled = false;
+        }
     }
 
     #region CAMERA MOVEMENT
