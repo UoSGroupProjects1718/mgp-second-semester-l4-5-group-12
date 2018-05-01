@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1010411368422274}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.28900003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 2
   m_CollisionDetection: 0
-  m_Constraints: 3
+  m_Constraints: 7
 --- !u!61 &61932178861918392
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983ba98f7b178b54ea4f016de72f9570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOwner: 0
+  playerOwner: 1
   normalSprite: {fileID: 0}
   damagedSprite: {fileID: 0}
-  blockHealth: 0
+  blockHealth: 999
   currentHealth: 0
 --- !u!212 &212180353474012400
 SpriteRenderer:

@@ -7,13 +7,21 @@ public class baseBlock : MonoBehaviour {
     public Sprite normalSprite, damagedSprite;
     [SerializeField] private int blockHealth;
 
-    [HideInInspector] public int currentHealth;
+    public int currentHealth;
     private SpriteRenderer sr;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         currentHealth = blockHealth;
+    }
+
+    public void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void UpdateHealth()
@@ -25,11 +33,6 @@ public class baseBlock : MonoBehaviour {
         else if (currentHealth < blockHealth)
         {
             sr.sprite = damagedSprite;
-        }
-
-        if (blockHealth <= 0)
-        {
-            Destroy(gameObject);
         }
     }
 }

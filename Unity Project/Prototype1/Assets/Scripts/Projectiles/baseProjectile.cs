@@ -23,16 +23,24 @@ public class baseProjectile : MonoBehaviour {
     private float speed;
 
     [HideInInspector] public int playerOwner;
+    private int hitAmnt = 5;
+    private float randomChance;
 
     private void Start()
     {
+        hitAmnt = 5;
         projectileDamage = GameManager.GMInstance.baseDamage;
+        GameManager.GMInstance.isProjectile = true;
     }
 
     private void Update()
     {
         if (this.transform.position.y <= -45)
             Destroy(this.gameObject);
+
+        if (hitAmnt <= 0)
+            Destroy(gameObject);
+            GameManager.GMInstance.isProjectile = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -49,33 +57,33 @@ public class baseProjectile : MonoBehaviour {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Block"))
         {
-
             baseBlock otherBB = other.gameObject.GetComponent<baseBlock>();
 
-            //GameObject RemainingTime = GameObject.Find("GameManager");
-            //GameManager TimeGetter = RemainingTime.GetComponent<GameManager>();
+            hitAmnt -= 1;
 
-            //otherBB.blockHealth -= TimeGetter.currentTimeLimit;
             otherBB.currentHealth -= 1;
             otherBB.UpdateHealth();
+            if (otherBB.currentHealth <= 0)
+            {
+                randomChance = Random.Range(0, 1);
+                if(randomChance >= 0.5)
+                {
+                    hitAmnt++;
+                }
 
-            //Destroy(gameObject);  
+            }
         }
 
         if (other.gameObject.tag == "Player") 
         {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Destroy(gameObject);
-        }
-
-        if (other.gameObject.tag == "Block") 
-        {
-            baseBlock otherBlock = other.gameObject.GetComponent<baseBlock>();
-
-            if (otherBlock.playerOwner == playerOwner) 
-            {
-                Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            }
+            GameManager.GMInstance.isProjectile = false;
         }
     }
+
+    //public void DestroyProjectile()
+    //{
+    //    Destroy(gameObject);
+    //}
 }

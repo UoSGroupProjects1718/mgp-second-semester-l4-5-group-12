@@ -10,7 +10,11 @@ public class MenuScript : MonoBehaviour {
     public void PlayGame()
     {
         SceneManager.LoadScene("alphaScene");
-		Debug.Log("Playing the game.");
+        GameManager.GMInstance.isGameOver = false;
+        GameManager.GMInstance.gameOverText.SetActive(false);
+        GameManager.GMInstance.restartButton.SetActive(false);
+        gameObject.GetComponent<CameraManager>().enabled = true;
+        Debug.Log("Playing the game.");
     }
 
     public void PlayTutorial()

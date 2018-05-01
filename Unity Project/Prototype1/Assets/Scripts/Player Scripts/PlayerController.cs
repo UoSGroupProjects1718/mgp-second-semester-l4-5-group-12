@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour {
 
     [HideInInspector] public float currentHealth;
 
-	void Start ()
+    public string playerName;
+
+    void Start ()
     {
         if (playerNumber > 2 || playerNumber < 1)
         {
@@ -35,7 +37,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         currentHealth = playerHealth;
-	}
+
+        //if (gameObject.tag == "Player")
+        //    playerName.text = this.gameObject.name.ToString();
+
+        Debug.Log(playerName);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -48,10 +55,18 @@ public class PlayerController : MonoBehaviour {
                 healthText.text = currentHealth.ToString("0");
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && gameObject.tag == "Player")
         {
-            currentHealth = 0;
-            Debug.Log("Player det: " + gameObject.name);
+            GameManager.GMInstance.isGameOver = true;
+            GameManager.GMInstance.currentRoundState = RoundState.GAMEOVER;
+            GameManager.GMInstance.GameOverScreen();
+            GameManager.GMInstance.winningPlayer.text = playerName + " Wins!";
         }
+
+        //if (currentHealth <= 0)
+        //{
+        //    currentHealth = 0;
+        //    Debug.Log("Player det: " + gameObject.name);
+        //}
     }
 }
