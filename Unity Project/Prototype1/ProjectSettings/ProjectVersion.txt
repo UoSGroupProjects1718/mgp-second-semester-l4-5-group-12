@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 m_EditorVersion: 2017.3.1p4
+=======
+m_EditorVersion: 2017.4.1f1
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 =======
 m_EditorVersion: 2017.4.1f1
 >>>>>>> parent of c804541... Updated the project, and fixed few bugs.

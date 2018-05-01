@@ -786,7 +786,11 @@ Prefab:
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_LocalPosition.x
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: -27.6
+=======
+      value: 41.95
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 =======
       value: 41.95
 >>>>>>> parent of c804541... Updated the project, and fixed few bugs.
@@ -794,7 +798,11 @@ Prefab:
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_LocalPosition.y
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 12.7
+=======
+      value: -0.7
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 =======
       value: -0.7
 >>>>>>> parent of c804541... Updated the project, and fixed few bugs.
@@ -1243,7 +1251,21 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!1001 &236044363
+=======
+--- !u!4 &379087541 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
+    type: 2}
+  m_PrefabInternal: {fileID: 1224159902}
+--- !u!4 &382498255 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
+    type: 2}
+  m_PrefabInternal: {fileID: 978039450}
+--- !u!1001 &399107272
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4880,9 +4902,41 @@ Prefab:
       propertyPath: m_RootOrder
       value: 59
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 1196835247771272, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
       propertyPath: m_Name
       value: WoodBlock (39)
+=======
+    - target: {fileID: 198345792248526436, guid: b6181c947706aa242977fb32e1211fe2,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198345792248526436, guid: b6181c947706aa242977fb32e1211fe2,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198345792248526436, guid: b6181c947706aa242977fb32e1211fe2,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198345792248526436, guid: b6181c947706aa242977fb32e1211fe2,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198345792248526436, guid: b6181c947706aa242977fb32e1211fe2,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198345792248526436, guid: b6181c947706aa242977fb32e1211fe2,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
@@ -6639,8 +6693,61 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
     type: 2}
+<<<<<<< HEAD
   m_PrefabInternal: {fileID: 997660850}
 --- !u!1001 &899207458
+=======
+  m_PrefabInternal: {fileID: 695750803}
+--- !u!1001 &1359918032
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948015804309342, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114414988033449914, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7,
+        type: 2}
+      propertyPath: shootForceMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 61843707648324162, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1365021064
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -16273,6 +16380,7 @@ Prefab:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -16501,6 +16609,8 @@ Prefab:
       propertyPath: m_Name
       value: GlassBlock (2)
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78c5a10161263b04d850794e542c0967, type: 2}
   m_IsPrefabParent: 0
@@ -17850,7 +17960,11 @@ Prefab:
         type: 2}
       propertyPath: playerOneCameraPos.x
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 12
+=======
+      value: 32
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 =======
       value: 32
 >>>>>>> parent of c804541... Updated the project, and fixed few bugs.
@@ -17879,7 +17993,11 @@ Prefab:
         type: 2}
       propertyPath: playerOneCameraPos.y
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0
+=======
+      value: -0.7
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 =======
       value: -0.7
 >>>>>>> parent of c804541... Updated the project, and fixed few bugs.
@@ -17888,7 +18006,11 @@ Prefab:
         type: 2}
       propertyPath: playerTwoCameraPos.y
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0
+=======
+      value: -0.7
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 =======
       value: -0.7
 >>>>>>> parent of c804541... Updated the project, and fixed few bugs.
