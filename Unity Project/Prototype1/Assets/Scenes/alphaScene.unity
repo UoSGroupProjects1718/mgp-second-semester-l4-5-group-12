@@ -214,8 +214,91 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
     type: 2}
+<<<<<<< HEAD
   m_PrefabInternal: {fileID: 1372112326}
 --- !u!1001 &47835597
+=======
+  m_PrefabInternal: {fileID: 60801830}
+--- !u!4 &86274508 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7,
+    type: 2}
+  m_PrefabInternal: {fileID: 2099319186}
+--- !u!1 &103979961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 103979962}
+  - component: {fileID: 103979963}
+  m_Layer: 0
+  m_Name: Layer5 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &103979962
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103979961}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.3, y: 0.4, z: -17}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747988384}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &103979963
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103979961}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1728215
+  m_SortingLayer: 2
+  m_SortingOrder: 20
+  m_Sprite: {fileID: 21300000, guid: 5c531f51524d40c4bb5cbb0d5f731e0e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 27.32, y: 20.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!1001 &111059942
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -702,11 +785,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: -27.6
+=======
+      value: 41.95
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
       value: 12.7
+=======
+      value: -0.7
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_LocalPosition.z
@@ -730,6 +821,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 103
       objectReference: {fileID: 0}
     - target: {fileID: 1165541775616862, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
@@ -738,6 +830,43 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
+=======
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392804387300254, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392804387300254, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392804387300254, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114461483192757618, guid: 6af1868ddb573904eaebd57684f7ff4c,
+        type: 2}
+      propertyPath: shootForceMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989060445633436, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989060445633436, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61192652090413010, guid: 6af1868ddb573904eaebd57684f7ff4c,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 61860092351546136, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 6af1868ddb573904eaebd57684f7ff4c, type: 2}
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
   m_IsPrefabParent: 0
 --- !u!1001 &140012838
 Prefab:
@@ -1044,12 +1173,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!4 &178970036 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
     type: 2}
   m_PrefabInternal: {fileID: 2136932819}
 --- !u!4 &195729033 stripped
+=======
+--- !u!4 &379087541 stripped
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Transform:
   m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
     type: 2}
@@ -1333,7 +1466,94 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!4 &262288215 stripped
+=======
+--- !u!4 &437509326 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7,
+    type: 2}
+  m_PrefabInternal: {fileID: 437509325}
+--- !u!4 &451781160 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1110717353}
+--- !u!1 &476063703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 476063705}
+  - component: {fileID: 476063704}
+  m_Layer: 0
+  m_Name: Layer7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &476063704
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476063703}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1442733641
+  m_SortingLayer: 1
+  m_SortingOrder: 7
+  m_Sprite: {fileID: 21300000, guid: c83f08dd4eb5d02418b65c5b76d486e2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 27.32, y: 20.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &476063705
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 476063703}
+  m_LocalRotation: {x: 0, y: 0, z: -0.104788885, w: 0.99449456}
+  m_LocalPosition: {x: 9.66, y: 3.3, z: 9.18}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747988384}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.03}
+--- !u!4 &485377506 stripped
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Transform:
   m_PrefabParentObject: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7,
     type: 2}
@@ -1761,6 +1981,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014,
     type: 2}
+<<<<<<< HEAD
   m_PrefabInternal: {fileID: 346384843}
 --- !u!4 &349487796 stripped
 Transform:
@@ -1768,6 +1989,161 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 1811296178}
 --- !u!1001 &359884096
+=======
+  m_PrefabInternal: {fileID: 611839211}
+--- !u!1 &620419216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 620419218}
+  - component: {fileID: 620419217}
+  m_Layer: 0
+  m_Name: Layer8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &620419217
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 620419216}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1442733641
+  m_SortingLayer: 1
+  m_SortingOrder: -20
+  m_Sprite: {fileID: 21300000, guid: 12ea86b6ac4706d4283b2a53e1ab2bd1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 27.32, y: 20.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &620419218
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 620419216}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.95, y: 5.42, z: 10}
+  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747988384}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &633130248 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4125518654863338, guid: e3990284558e55e4ab6bbf5d205e1cf4,
+    type: 2}
+  m_PrefabInternal: {fileID: 128658424}
+--- !u!1 &636740325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 636740327}
+  - component: {fileID: 636740326}
+  m_Layer: 0
+  m_Name: Layer3 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &636740326
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 636740325}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1442733641
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 4beff72a2c60c144b92cb884808c6ec9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 27.32, y: 20.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &636740327
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 636740325}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 92.2, y: -0.87, z: 10}
+  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747988384}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &640143943
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4442,6 +4818,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 119
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 1010411368422274, guid: e3990284558e55e4ab6bbf5d205e1cf4, type: 2}
       propertyPath: m_Name
       value: StoneLongPlank (17)
@@ -4536,6 +4913,90 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 128658424}
 --- !u!1001 &640143943
+=======
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b6181c947706aa242977fb32e1211fe2, type: 2}
+  m_IsPrefabParent: 0
+--- !u!224 &963005499 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224268683440515260, guid: a84b9c3a6b4ee6d4c954720c8d286d0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 359884096}
+--- !u!1 &968428871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 968428873}
+  - component: {fileID: 968428872}
+  m_Layer: 0
+  m_Name: Layer10 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &968428872
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968428871}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1442733641
+  m_SortingLayer: 1
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 1c490697c78566f4b86e3e41108d4ed8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 27.32, y: 20.48}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &968428873
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968428871}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 34.6, y: -1.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747988384}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &969295040
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4544,7 +5005,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: -2
+=======
+      value: -3
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     - target: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5519,7 +5984,92 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!4 &794111076 stripped
+=======
+--- !u!1 &1193770798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1193770802}
+  - component: {fileID: 1193770801}
+  - component: {fileID: 1193770800}
+  - component: {fileID: 1193770799}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &1193770799
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1193770798}
+  m_Enabled: 1
+--- !u!124 &1193770800
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1193770798}
+  m_Enabled: 1
+--- !u!20 &1193770801
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1193770798}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 1
+  far clip plane: 1000
+  field of view: 90
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1193770802
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1193770798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11, y: 1, z: -22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1204585043 stripped
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
 Transform:
   m_PrefabParentObject: {fileID: 4030318042101250, guid: d59605deca2f06e4bab87f3383edcad7,
     type: 2}
@@ -6066,9 +6616,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 90
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 1165541775616862, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_Name
       value: StoneBlock (84)
+=======
+    - target: {fileID: 114414988033449914, guid: 2b8fe807dc965aa43b5dbf8d5c905ee7,
+        type: 2}
+      propertyPath: shootForceMultiplier
+      value: 0.2
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
@@ -15660,6 +16217,7 @@ Prefab:
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 4883886097130904, guid: 1b6eec5ec963b594db468faa9242c014, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
@@ -15870,6 +16428,8 @@ Prefab:
       propertyPath: m_Name
       value: WoodBlock (40)
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d59605deca2f06e4bab87f3383edcad7, type: 2}
   m_IsPrefabParent: 0
@@ -17289,7 +17849,11 @@ Prefab:
     - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
         type: 2}
       propertyPath: playerOneCameraPos.x
+<<<<<<< HEAD
       value: 12
+=======
+      value: 32
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
         type: 2}
@@ -17314,12 +17878,20 @@ Prefab:
     - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
         type: 2}
       propertyPath: playerOneCameraPos.y
+<<<<<<< HEAD
       value: 0
+=======
+      value: -0.7
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
         type: 2}
       propertyPath: playerTwoCameraPos.y
+<<<<<<< HEAD
       value: 0
+=======
+      value: -0.7
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
       objectReference: {fileID: 0}
     - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
         type: 2}
@@ -17346,6 +17918,44 @@ Prefab:
       propertyPath: timeLimit
       value: 5
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: winningPlayer
+      value: 
+      objectReference: {fileID: 123725711}
+    - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: intermissionPos.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 123725709}
+    - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 999701187}
+    - target: {fileID: 114333230760562850, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: cameraPanLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333230760562850, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: cameraZoomLength
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114427793429242684, guid: 8b992261de8cf5141b4da22d2089bb11,
+        type: 2}
+      propertyPath: intermissionPos.x
+      value: 28
+      objectReference: {fileID: 0}
+>>>>>>> parent of c804541... Updated the project, and fixed few bugs.
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b992261de8cf5141b4da22d2089bb11, type: 2}
   m_IsPrefabParent: 0

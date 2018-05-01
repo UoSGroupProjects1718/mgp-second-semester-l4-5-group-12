@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour
         currentIntervalTime = intervalTime;
         Physics2D.IgnoreLayerCollision(0, 9, true);
         Physics2D.IgnoreLayerCollision(8, 9, true);
-
         ChangeTurn();
 	}
 
@@ -166,21 +165,16 @@ public class GameManager : MonoBehaviour
 
     private void Update () 
     {
-        // The camera is not moving.
+        Debug.Log(isGameOver);
+
         if (!cameraMoving && turnText.isActiveAndEnabled && !isProjectile) 
         {
             timerText.enabled = false; 
-            turnText.enabled = false;
-
+            turnText.enabled = false; 
             canShoot = true;
-        }
-
-        if (!cameraMoving && currentRoundState != RoundState.INTERMISSION)
-        {
             isCountingDown = true;
         }
 
-        // Count down if its intermission.
         if (intermissionCounter == true)
         {
             currentIntervalTime -= Time.deltaTime;
@@ -195,7 +189,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Round time counter.
         if (isCountingDown == true)
         {
             currentTimeLimit -= Time.deltaTime;
@@ -224,14 +217,13 @@ public class GameManager : MonoBehaviour
 
         // Change turn currentTimeLimit.
         currentIntervalTime = intervalTime;
-        currentTimeLimit = timeLimit;
-
+        canShoot = false;
         intermissionCounter = true;
         turnText.enabled = true;
         timerText.enabled = true;
-
-        canShoot = false;
+        currentTimeLimit = timeLimit;
         isCountingDown = false;
+        currentTimeLimit = timeLimit;
     }
 
     //TURN CHANGING
@@ -245,6 +237,7 @@ public class GameManager : MonoBehaviour
             CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
+            //canShoot = true;
             turnText.text = "Player 1 Turn.";
         }
         else if (playerTurn == 1)
@@ -253,6 +246,7 @@ public class GameManager : MonoBehaviour
             CameraManager.CMInstance.MoveCamera(playerTwoCameraPos, playerTwoCamSize);
 
             playerTurn += 1;
+            //canShoot = true;
             turnText.text = "Player 2 Turn.";
         }
         else if (playerTurn == 2)
@@ -261,6 +255,7 @@ public class GameManager : MonoBehaviour
             CameraManager.CMInstance.MoveCamera(playerOneCameraPos, playerOneCamSize);
 
             playerTurn += 1;
+            //canShoot = true;
             turnText.text = "Player 1 Turn.";
         }
 
@@ -269,8 +264,8 @@ public class GameManager : MonoBehaviour
         {
             playerTurn = 1;
         }
-
         turnCounter += 1;
+        isCountingDown = false;
         currentTimeLimit = timeLimit;
     }
 
@@ -279,7 +274,6 @@ public class GameManager : MonoBehaviour
         if (isGameOver == true)
         {
             Debug.Log("GameOver");
-            isCountingDown = false;
             gameOverText.SetActive(true);
             restartButton.SetActive(true);
         }
